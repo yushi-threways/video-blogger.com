@@ -1,0 +1,15 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}投稿作成 | Vlogger管理{% endblock %}
+
+{% block breadcrumbs %}
+    <li class="breadcrumb-item active">投稿作成</li>
+ {% endblock %}
+
+{% block content %}
+    <h1>投稿作成</h1>
+
+    {{ include('post/_form.html.twig') }}
+
+    <a href="{{ path('post_index') }}">back to list</a>
+{% endblock %}

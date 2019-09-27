@@ -183,11 +183,9 @@
                     </footer>
 
                     {% block javascripts %}
+                        <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+                        <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
                         {{ encore_entry_script_tags('app') }}
-
-                        <!-- Renders app.js & a webpack runtime.js file
-                            <script src="/build/runtime.js"></script>
-                            <script src="/build/app.js"></script> -->
                     {% endblock %}
                 {% endblock %}
             </div>

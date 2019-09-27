@@ -9,6 +9,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class UserDetail
 {
+    use Timestampable;
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()

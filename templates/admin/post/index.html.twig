@@ -1,0 +1,43 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}投稿一覧 | Vlogger管理{% endblock %}
+
+{% block breadcrumbs %}
+    <li class="breadcrumb-item active">投稿一覧</li>
+ {% endblock %}
+
+{% block content %}
+    <h1>Post index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>タイトル</th>
+                <th>スラッグ</th>
+                <th>記事概要</th>
+                <th>公開日</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for post in posts %}
+            <tr>
+                <td>{{ post.title }}</td>
+                <td>{{ post.slug }}</td>
+                <td>{{ post.summary }}</td>
+                <td>{{ post.publishedAt ? post.publishedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('admin_post_show', {'id': post.id}) }}">show</a>
+                    <a href="{{ path('admin_post_edit', {'id': post.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">投稿はございません</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('admin_post_new') }}">Create new</a>
+{% endblock %}

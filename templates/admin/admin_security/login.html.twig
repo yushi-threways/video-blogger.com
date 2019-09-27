@@ -6,8 +6,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="format-detection" content="telephone=no">
 
-        {% set title = 'オミパリ管理 | オミパリ' %}
-        <title>{{ title }}</title>
+        {% block head_metatag %}
+            <title>{% block title %}ログイン | Vlogger管理{% endblock %}</title>
+        {% endblock %}
+    
     
         {{ encore_entry_link_tags('app') }}
     </head>
@@ -15,7 +17,7 @@
         {% form_theme form "form/layout.html.twig" %}
         
         <header class="admin-Login_Header">
-            <p class="admin-Login_HaederText">オミパリ管理</p>
+            <p class="admin-Login_HaederText">管理</p>
         </header>
         <div class="container admin-Login">
         <h1 class="admin-Login_Title">ログイン</h1>

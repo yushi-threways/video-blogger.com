@@ -37,7 +37,7 @@ class User extends BaseUser
 
     public function __construct()
     {
-        $this->setRoles(['ROLE_USER']);
+        parent::__construct();
     }
 
     public function getId(): ?int
