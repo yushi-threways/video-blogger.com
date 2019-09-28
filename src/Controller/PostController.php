@@ -20,13 +20,14 @@ class PostController extends AbstractController
      */
     public function index(PostRepository $postRepository): Response
     {
-        
-
         return $this->render('post/index.html.twig', [
+
         ]);
     }
 
-   
+    /**
+     * @Route("/{slug}", name="post_show", methods={"GET"})
+     */
     public function show(Post $post): Response
     {
         return $this->render('post/show.html.twig', [

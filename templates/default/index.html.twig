@@ -7,6 +7,10 @@
 
 {% block main %}
 <section class="sw-Section">
-   <div id="js-Post" class="sw-Post"></div>
+   <div id="js-Post"></div>
 </section>
+{% endblock %}
+
+{% block javascripts %}
+   {{ parent() }}
 {% endblock %}

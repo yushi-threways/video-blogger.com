@@ -5,35 +5,37 @@ jQuery(function($){
         method: 'get',
         url: url
     }).then(function(res){
-        console.log(res);
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
         posts = res;
+
+        var ytWidth = 640;
+        var ytHeight = 390;
+        var youtubeData = [
+            {
+                youtubeIid: posts[0].video,
+                embedArea: 'js-Post'
+            }
+        ];
+        function onYouTubeIframeAPIReady(posts) {
+              console.log(posts.length);
+            for(var i = 0; i < posts.length; i++) {
+                youtubeData[i] = new YT.Player(youtubeData[0]['embedArea'], {
+                    width: ytWidth,
+                    height: ytHeight,
+                    videoId: youtubeData[i]['youtubeIid'],
+                    playerVars: {
+                        rel: 0
+                    },
+                    events: {
+                        'onReady': onPlayerReady
+                    }
+                });
+            }
+        }
+        onYouTubeIframeAPIReady(posts)
     });
 });
-
-var tag = document.createElement('script');
-    tag.src = "https://www.youtube.com/iframe_api";
-    var firstScriptTag = document.getElementsByTagName('script')[0];
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-    
-    // YouTubeの埋め込み
-    var ytPlayer = [];
-    var ytData = [
-        {
-            id: 'yCZFof7Y0tQ',
-        },
-    ];
-    function onYouTubeIframeAPIReady() {
-        for(var i = 0; i < ytData.length; i++) {
-            ytPlayer[i] = new YT.Player('#js-Post', {
-                width: 640,
-                height: 480,
-                videoId: ytData[i][id],
-                playerVars: {
-                    rel: 0
-                },
-                events: {
-                    'onReady': onPlayerReady
-                }
-            });
-        }
-    }
