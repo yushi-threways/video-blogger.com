@@ -13,12 +13,11 @@ global.$ = global.jQuery = $;
 
 require('bootstrap');
 
+// console.log('Hello Webpack Encore! Edit me in assets/js/app.js');
 
-// Need jQuery? Install it with "yarn add jquery", then uncomment to require it.
-// const $ = require('jquery');
-
-console.log('Hello Webpack Encore! Edit me in assets/js/app.js');
-
-import './getPost';
+// import './getPost';
+// import './youtube-player';
 // import './onYouTubeIframeAPIReady';
 import './sb-admin';
+
+import './swiper';

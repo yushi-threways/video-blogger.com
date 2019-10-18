@@ -26,16 +26,6 @@ class PostController extends AbstractController
     }
 
     /**
-     * @Route("/{slug}", name="post_show", methods={"GET"})
-     */
-    public function show(Post $post): Response
-    {
-        return $this->render('post/show.html.twig', [
-            'post' => $post,
-        ]);
-    }
-
-    /**
      * @Route("/post.json", methods={"GET"}, options={"expose"=true})
      */
     public function getAllPostResponse(PostRepository $postRepository): Response
@@ -46,5 +36,14 @@ class PostController extends AbstractController
         );
 
         return $this->json($post);
+    }
+    
+    /**
+     * @Route("/{slug}", name="post_show", methods={"GET"})
+     */
+    public function show(string $slug): Response
+    {
+        return $this->render('post/show.html.twig', [
+        ]);
     }
 }

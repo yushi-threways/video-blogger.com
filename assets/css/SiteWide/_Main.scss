@@ -3,7 +3,10 @@
 }
 .sw-Main_Inner {
     max-width: 100%;
-    width: $size__site-main;
+    width: $size__site-content;
+    display: flex;
     margin: 0 auto;
-    padding: 0 15px;
+    padding: 45px 0 0;
+    justify-content: space-between;
+    align-items: flex-start;
 }

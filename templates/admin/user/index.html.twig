@@ -1,6 +1,8 @@
 {% extends 'admin/base.html.twig' %}
 
-{% block title %}ユーザー | {{ admin_name }}{% endblock %}
+{% block head_metatag %}
+    <title>{% block title %}Vlogger管理{% endblock %}</title>
+  {% endblock %}
 
 
 {% block breadcrumbs %}

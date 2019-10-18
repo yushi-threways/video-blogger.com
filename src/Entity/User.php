@@ -30,10 +30,6 @@ class User extends BaseUser
      */
     private $updatedAt;
 
-    /**
-     * @ORM\OneToOne(targetEntity="App\Entity\UserDetail", mappedBy="user", cascade={"persist", "remove"})
-     */
-    private $userDetail;
 
     public function __construct()
     {
@@ -79,40 +75,6 @@ class User extends BaseUser
     public function onPostUpdate()
     {
         $this->updatedAt = new \DateTime();
-        return $this;
-    }
-
-    public function getUserDetail(): ?UserDetail
-    {
-        return $this->userDetail;
-    }
-
-    public function setUserDetail(UserDetail $userDetail): self
-    {
-        $this->userDetail = $userDetail;
-
-        // set the owning side of the relation if necessary
-        if ($this !== $userDetail->getUser()) {
-            $userDetail->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function getBankAccount(): ?BankAccount
-    {
-        return $this->bankAccount;
-    }
-
-    public function setBankAccount(BankAccount $bankAccount): self
-    {
-        $this->bankAccount = $bankAccount;
-
-        // set the owning side of the relation if necessary
-        if ($this !== $bankAccount->getUser()) {
-            $bankAccount->setUser($this);
-        }
-
         return $this;
     }
 }
