@@ -4,6 +4,16 @@
     margin: 0;
     padding: 0;
     order: 1;
+    @include media-breakpoint-down(sm) {
+        display: none;
+        z-index: 10;
+        order: 0;
+    }
+}
+aside.sw-Side.open {
+    @include media-breakpoint-down(sm) {
+        display: block;
+    }
 }
 .sw-Side_Inner {
     height: 100vh;
@@ -12,6 +22,9 @@
     color: rgba(255, 255, 255, 0.88);
     background: rgba(255, 255, 255, 0.1);
     position: fixed;
+    @include media-breakpoint-down(sm) {
+        background-color: #000;
+    }
 }
 .sw-Side_Keyword {
 

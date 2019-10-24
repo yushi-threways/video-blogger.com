@@ -1,9 +1,13 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/base.html.twig' %}
 
-{% block title %}New Category{% endblock %}
+{% block title %}カテゴリ作成 | Vlogger管理{% endblock %}
 
-{% block body %}
-    <h1>Create new Category</h1>
+{% block breadcrumbs %}
+    <li class="breadcrumb-item active">カテゴリ作成</li>
+ {% endblock %}
+
+{% block content %}
+    <h1>カテゴリー新規作成</h1>
 
     {{ include('category/_form.html.twig') }}
 

@@ -108,9 +108,9 @@ class Post
     /**
      * @var string
      *
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="string")
      * @Assert\NotBlank(message="post.blank_video")
-     * @Assert\Length(max=500)
+     * @Assert\Length(max=255)
      */
     private $video;
 

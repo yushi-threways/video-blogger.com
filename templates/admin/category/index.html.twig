@@ -1,8 +1,13 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/base.html.twig' %}
 
-{% block title %}Category index{% endblock %}
+{% block title %}カテゴリ一覧 | Vlogger管理{% endblock %}
 
-{% block body %}
+{% block breadcrumbs %}
+    <li class="breadcrumb-item active">カテゴリ一覧</li>
+ {% endblock %}
+
+
+{% block content %}
     <h1>Category index</h1>
 
     <table class="table">
@@ -10,9 +15,6 @@
             <tr>
                 <th>Id</th>
                 <th>Title</th>
-                <th>Lft</th>
-                <th>Lvl</th>
-                <th>Rgt</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -21,12 +23,9 @@
             <tr>
                 <td>{{ category.id }}</td>
                 <td>{{ category.title }}</td>
-                <td>{{ category.lft }}</td>
-                <td>{{ category.lvl }}</td>
-                <td>{{ category.rgt }}</td>
                 <td>
-                    <a href="{{ path('category_show', {'id': category.id}) }}">show</a>
-                    <a href="{{ path('category_edit', {'id': category.id}) }}">edit</a>
+                    <a href="{{ path('admin_category_show', {'id': category.id}) }}">show</a>
+                    <a href="{{ path('admin_category_edit', {'id': category.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -37,5 +36,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('category_new') }}">Create new</a>
+    <a href="{{ path('admin_category_new') }}">Create new</a>
 {% endblock %}

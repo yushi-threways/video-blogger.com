@@ -15,9 +15,7 @@ require('bootstrap');
 
 // console.log('Hello Webpack Encore! Edit me in assets/js/app.js');
 
-// import './getPost';
 // import './youtube-player';
-// import './onYouTubeIframeAPIReady';
 import './sb-admin';
-
 import './swiper';
+import './vlog-menu';

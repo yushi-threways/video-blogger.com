@@ -26,7 +26,7 @@ class PostType extends AbstractType
         ])
         ->add('video', null, [
             'attr' => ['autofocus' => true],
-            'label' => 'YouTube動画',
+            'label' => 'YouTube動画ID',
         ])
         ->add('summary', TextareaType::class, [
             'help' => 'help.post_summary',

@@ -18,6 +18,10 @@
     -webkit-align-items: center;
     -ms-flex-align: center;
     align-items: center;
+    @include media-breakpoint-down(sm) {
+        width: 95%;
+        margin: 0 auto 8px;
+    }
     a {
         @include font-size(18px);
         display: inline-block;
@@ -125,4 +129,7 @@
     width: 95%;
     margin: 0;
     overflow: hidden;
+    @include media-breakpoint-down(sm) {
+        margin: 0 auto;
+    }
 }

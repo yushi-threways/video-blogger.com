@@ -34,9 +34,12 @@
 }
 .sw-Header_LogoMark {
     @include font-size(20px);
-    color: #333;
+    color: #fff;
     letter-spacing: 2px;
     font-weight: bold;
+    @include media-breakpoint-down(sm) {
+        padding: 0 0 0 40px;
+    }
 }
 .sw-Header_MainNavItems {
     display: flex;

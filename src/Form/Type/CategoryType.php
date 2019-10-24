@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Form;
+namespace App\Form\Type;
 
 use App\Entity\Category;
 use Symfony\Component\Form\AbstractType;
@@ -13,9 +13,6 @@ class CategoryType extends AbstractType
     {
         $builder
             ->add('title')
-            ->add('lft')
-            ->add('lvl')
-            ->add('rgt')
             ->add('root')
             ->add('parent')
         ;

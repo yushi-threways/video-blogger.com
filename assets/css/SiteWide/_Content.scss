@@ -5,4 +5,8 @@
     order: 2;
     padding-right: 18px;
     padding-left: 280px;
+    @include media-breakpoint-down(sm) {
+        padding: 0;
+        order: 1;
+    }
 }

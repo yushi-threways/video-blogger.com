@@ -59,7 +59,7 @@
                     {% if form is defined %}
                         {% form_theme form "form/layout.html.twig" %}
                     {% endif %}
-                    <header class="sw-Header">
+                    <header class="sw-Header js-fixed-header" id="header">
                         {% block header %}
                         <div class="sw-Header_Inner">
                             <div class="sw-Header_Branding">
@@ -72,6 +72,11 @@
                                 <div class="sw-Header_MainNavOuter">
                                     <nav class="sw-Header_MainNav">
                                         <div class="sw-Header_MainNavInner">
+                                            <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
+                                                <i></i>
+                                                <i></i>
+                                                <i></i>
+                                            </button>
                                             <ul class="sw-Header_MainNavItems">
                                                 {% if is_granted('ROLE_USER') %}
                                                     <li class="sw-Header_MainNavItem"><a href="{{ path('default_index') }}"><i class="fa fa-address-card"></i><br>マイページ</a></li>
@@ -124,40 +129,6 @@
                             </div>
                         </aside>
                     </main>
-
-                    {# <footer class="sw-Footer">
-                        {% block footer %}
-                            <div class="sw-Footer_Inner">
-                                <ul class="sw-Footer_Items">
-                                    <li class="sw-Footer_Item">
-                                        <p class="sw-Footer_ItemTitle">Vlogコンテンツ</p>
-                                        <ul class="sw-Footer_ItemLists">
-                                            <li class="sw-Footer_ItemList"><a href="{{ path('default_index') }}">トップ</a></li>
-                                            <li class="sw-Footer_ItemList"><a href="{{ path('site_static', {page: "about"}) }}">Vlogger一覧</a></li>
-                                            <li class="sw-Footer_ItemList"><a href="{{ path('site_static', {page: "about"}) }}">Vlogger募集</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="sw-Footer_Item">
-                                        <p class="sw-Footer_ItemTitle">利用規約とプライバシー</p>
-                                        <ul class="sw-Footer_ItemLists">
-                                            <li class="sw-Footer_ItemList"><a href="{{ path('site_static', {page: "about"}) }}">利用規約</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="sw-Footer_Item">
-                                        <p class="sw-Footer_ItemTitle">お困りの時は</p>
-                                        <ul class="sw-Footer_ItemLists">
-                                            <li class="sw-Footer_ItemList"><a href="{{ path('site_static', {page: "about"}) }}">Vloggerについて</a></li>
-                                            <li class="sw-Footer_ItemList"><a href="{{ path('site_static', {page: "guide"}) }}">ご利用ガイド</a></li>
-                                            <li class="sw-Footer_ItemList"><a href="{{ path('site_static', {page: "qa"}) }}">よくある質問</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                                <div class="sw-Footer_Copy"><small>
-                                Copyright © 2019 OMIPARI Inc. All Rights Reserved.
-                            </small></div>
-                            </div>
-                        {% endblock %}
-                    </footer> #}
                 {% endblock %}
             </div>
         </div>
