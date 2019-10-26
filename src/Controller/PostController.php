@@ -39,9 +39,9 @@ class PostController extends AbstractController
     }
     
     /**
-     * @Route("/{video}", name="post_show", methods={"GET"})
+     * @Route("/{slug}", name="post_show", methods={"GET"})
      */
-    public function show(string $video): Response
+    public function show(string $slug): Response
     {
         return $this->render('post/show.html.twig', [
         ]);

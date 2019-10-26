@@ -6,6 +6,8 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+
 
 class ApiPostType extends AbstractType
 {
@@ -15,6 +17,12 @@ class ApiPostType extends AbstractType
         ->add('videoId', null, [
             'attr' => ['autofocus' => true],
             'label' => 'YouTubeId',
+        ])
+        ->add('publishedAt', DateTimeType::class, [
+            'label' => '記事公開日時',
+            'widget' => 'single_text',
+            // 'html5' => false,
+            'attr' => ['class' => 'js-datepicker'],
         ])
     ;
     }

@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Post;
 use App\Form\Type\ApiPostType;
+use App\Form\Type\PostType;
 use App\Repository\PostRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -11,13 +12,11 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpClient\HttpClient;
 
-
 /**
  * @Route("/admin/post")
  */
 class PostController extends AbstractController
 {
-
     const API_KEY = 'AIzaSyBxFnqOhHoT17GVKc3PZAHaVnOgnnVKqLk';
 
     
@@ -51,26 +50,39 @@ class PostController extends AbstractController
 
             $httpClient = HttpClient::create();
             $response = $httpClient->request(
-                'GET', 
+                'GET',
                 $url
             );
-    
-            $post->setVideo($data['videoId']);
-            $post->setSlug($data['videoId']);
-            echo '<pre>';
-            var_dump($response);
-            echo '</pre>';
 
-            // $post->setTitle($response['videos']['title']);
-            $post->setSummary($response['videos']['description']);
-            // $post->setContent($response['videos']['description']);
-            // $post->setPublishedAt(new \Date);
+            $videoData = [];
+            if ($statusCode = $response->getStatusCode() === 200) {
+                $content = json_decode($response->getContent(), true);
+                if (is_array($content)) {
+                    // $content = $response->getContent();
+                    $post->setVideo($data['videoId']);
+                    $post->setSlug($data['videoId']);
+                    $post->setPublishedAt($data['publishedAt']);
+                    $videoData[] = $content['items'][0]['snippet'];
 
-            // $entityManager = $this->getDoctrine()->getManager();
-            // $entityManager->persist($post);
-            // $entityManager->flush();
+                    var_dump($videoData[0]['description']);
 
-            return $this->redirectToRoute('admin_post_index');
+                    $post->setTitle($videoData[0]['title']);
+                    $post->setSummary($videoData[0]['description']);
+                    $post->setContent($videoData[0]['description']);
+
+                    $entityManager = $this->getDoctrine()->getManager();
+                    $entityManager->persist($post);
+                    $entityManager->flush();   
+                }
+
+                $this->addFlash('success', '投稿に成功しました');
+
+                return $this->redirectToRoute('admin_post_index');
+            } else {
+                
+                $this->addFlash('warning', '投稿に失敗しました。');
+                return $this->redirectToRoute('admin_post_index');
+            }
         }
 
         return $this->render('admin/post/new.html.twig', [

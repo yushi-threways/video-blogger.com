@@ -24,6 +24,11 @@ class Category
     private $title;
 
     /**
+     * @ORM\Column(name="slug", type="string", length=64)
+     */
+    private $slug;
+
+    /**
      * @Gedmo\TreeLeft
      * @ORM\Column(name="lft", type="integer")
      */
@@ -76,6 +81,16 @@ class Category
         return $this->title;
     }
 
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+    }
+
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
     public function getRoot()
     {
         return $this->root;
@@ -89,5 +104,11 @@ class Category
     public function getParent()
     {
         return $this->parent;
+    }
+
+    public function __toString()
+    {
+        return $this->title;
+        return $this->slug;
     }
 }

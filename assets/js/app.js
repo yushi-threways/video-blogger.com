@@ -19,3 +19,4 @@ require('bootstrap');
 import './sb-admin';
 import './swiper';
 import './vlog-menu';
+import './datapicker';

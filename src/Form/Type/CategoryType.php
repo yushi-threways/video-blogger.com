@@ -12,9 +12,15 @@ class CategoryType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title')
-            ->add('root')
-            ->add('parent')
+            ->add('title', null, [
+                'label' => 'カテゴリ名',
+            ])
+            ->add('slug', null, [
+                'label' => 'スラッグ',
+            ])
+            ->add('parent', null, [
+                'label' => '親カテゴリー',
+            ])
         ;
     }
 
