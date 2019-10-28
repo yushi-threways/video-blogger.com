@@ -13,8 +13,8 @@
         <thead>
             <tr>
                 <th>タイトル</th>
-                <th>スラッグ</th>
-                <th>記事概要</th>
+                <th>ビデオID,スラッグ</th>
+                <th>カテゴリー</th>
                 <th>公開日</th>
                 <th>actions</th>
             </tr>
@@ -24,7 +24,7 @@
             <tr>
                 <td>{{ post.title }}</td>
                 <td>{{ post.slug }}</td>
-                <td>{{ post.summary }}</td>
+                <td>{{ post.category }}</td>
                 <td>{{ post.publishedAt ? post.publishedAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
                     <a href="{{ path('admin_post_show', {'id': post.id}) }}">show</a>

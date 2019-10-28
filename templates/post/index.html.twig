@@ -1,7 +1,54 @@
-{% extends 'base.html.twig' %}
+{% extends "base.html.twig" %}
 
-{% block title %}Post index{% endblock %}
+{% block head %}
+   <title>新着Vlogger動画一覧|Vlogger</title>
+   <meta name="description" content="">
+   <link rel="canonical" href="">
+{% endblock %}
 
-{% block content %}
-    <h1>Post index</h1>
+{% block stylesheet %}
+   {{ parent() }}
+{% endblock %}
+
+{% block main %}
+<section class="sw-Section">
+   <div class="post-Index">
+      <div class="post-Index_Inner">
+         <h2 class="post-Index_Title">新しい投稿一覧</h2>
+            <div class="post-List">
+               {% for post in posts %}
+               <div class="post-Item">
+               <a class="post-Item_Link" href="{{ path('post_show', {'slug': post.slug}) }}">
+               <div class="post-Item_Image">
+               <img src="http://i.ytimg.com/vi/{{ post.video }}/sddefault.jpg" alt="{{ post.title }}">
+               </div>
+               <div class="post-Item_Title">
+                  <p>{{ post.title }}</p>
+               </div>
+               </a>
+               {% if post.category %}
+               <div class="post-Item_Category">
+                  <a href="">{{ post.category }}</a>
+               </div>
+               {% endif %}
+               <div class="post-Item_Tag">
+                  <div class="post-Item_TagIcon">
+                     <i class="fas fa-tags"></i>
+                  </div>
+                  <ul class="post-Item_TagList">
+                     <li class="post-Item_TagItem"><a href="">タグ</a></li>
+                     <li class="post-Item_TagItem"><a href="">タグ</a></li>
+                     <li class="post-Item_TagItem"><a href="">タグ</a></li>
+                  </ul>
+               </div>
+            </div>
+            {% endfor %}
+        </div>
+      </div>
+   </div>
+</section>
+{% endblock %}
+
+{% block javascripts %}
+   {{ parent() }}
 {% endblock %}

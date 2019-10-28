@@ -3,12 +3,15 @@
 namespace App\Controller;
 
 use App\Entity\Post;
+use App\Entity\Category;
 use App\Form\Type\PostType;
 use App\Repository\PostRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 /**
  * @Route("/post")
@@ -20,30 +23,34 @@ class PostController extends AbstractController
      */
     public function index(PostRepository $postRepository): Response
     {
+        $posts = $postRepository->findAll();
         return $this->render('post/index.html.twig', [
-
+            'posts' => $posts,
         ]);
     }
 
     /**
-     * @Route("/post.json", methods={"GET"}, options={"expose"=true})
+     * @param Category $category
+     * @Route("/{category}", name="post_category", methods={"GET"})
+     * @ParamConverter("category", options={"mapping": {"category": "category.title"}})
      */
-    public function getAllPostResponse(PostRepository $postRepository): Response
+    public function category(Category $category): Response
     {
-        $post = $postRepository->findBy(
-            [],
-            ['createdAt' => 'DESC']
-        );
 
-        return $this->json($post);
+
+        return $this->render('post/category.html.twig', [
+
+        ]);
     }
     
     /**
-     * @Route("/{slug}", name="post_show", methods={"GET"})
+     * @Route("/{category}/{slug}")
+     * @ParamConverter("post", options={"mapping": {"category": "category.title", "slug": "slug"}})
      */
-    public function show(string $slug): Response
+    public function show(Post $post): Response
     {
         return $this->render('post/show.html.twig', [
+            'post' => $post,
         ]);
     }
 }

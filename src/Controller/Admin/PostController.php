@@ -62,12 +62,12 @@ class PostController extends AbstractController
                     $post->setVideo($data['videoId']);
                     $post->setSlug($data['videoId']);
                     $post->setPublishedAt($data['publishedAt']);
+                    $post->setCategory($data['category']);
                     $videoData[] = $content['items'][0]['snippet'];
 
                     var_dump($videoData[0]['description']);
 
                     $post->setTitle($videoData[0]['title']);
-                    $post->setSummary($videoData[0]['description']);
                     $post->setContent($videoData[0]['description']);
 
                     $entityManager = $this->getDoctrine()->getManager();

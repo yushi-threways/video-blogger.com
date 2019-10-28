@@ -16,10 +16,11 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use App\Entity\Timestampable;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PostRepository")
- *
+ * @UniqueEntity("video")
  */
 class Post
 {
@@ -60,8 +61,7 @@ class Post
     /**
      * @var string
      *
-     * @ORM\Column(type="string")
-     * @Assert\NotBlank(message="post.blank_summary")
+     * @ORM\Column(type="string", nullable=true)
      * @Assert\Length(max=255)
      */
     private $summary;
@@ -113,6 +113,12 @@ class Post
      * @Assert\Length(max=255)
      */
     private $video;
+    
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="posts")
+     */
+    private $category;
 
     public function __construct()
     {
@@ -221,5 +227,17 @@ class Post
     public function setVideo(string $video): void
     {
         $this->video = $video;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
+
+        return $this;
     }
 }

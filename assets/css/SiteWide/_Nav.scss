@@ -1,6 +1,10 @@
+.menu-toggle {
+  display: none;
+}
 
 @include media-breakpoint-down(sm) {
     .menu-toggle {
+      display: block;
       width: 24px;
       height: 18px;
       padding: 0;
