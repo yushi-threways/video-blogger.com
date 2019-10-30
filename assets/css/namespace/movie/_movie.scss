@@ -18,8 +18,13 @@
     -webkit-align-items: center;
     -ms-flex-align: center;
     align-items: center;
+    @include font-size(18px);
+    display: inline-block;
+    margin-right: 16px;
+    font-weight: normal;
     @include media-breakpoint-down(sm) {
-        width: 95%;
+        width: 100%;
+        padding: 0 10px;
         margin: 0 auto 8px;
     }
     a {

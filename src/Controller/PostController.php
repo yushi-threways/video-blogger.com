@@ -29,23 +29,11 @@ class PostController extends AbstractController
         ]);
     }
 
-    /**
-     * @param Category $category
-     * @Route("/{category}", name="post_category", methods={"GET"})
-     * @ParamConverter("category", options={"mapping": {"category": "category.title"}})
-     */
-    public function category(Category $category): Response
-    {
-
-
-        return $this->render('post/category.html.twig', [
-
-        ]);
-    }
     
+
     /**
-     * @Route("/{category}/{slug}")
-     * @ParamConverter("post", options={"mapping": {"category": "category.title", "slug": "slug"}})
+     * @Route("/{category}/{slug}", name="post_show", methods={"GET"})
+     * @ParamConverter("post", options={"mapping": {"category": "category.slug", "slug": "slug"}})
      */
     public function show(Post $post): Response
     {

@@ -32,6 +32,7 @@ class PostType extends AbstractType
         ])
         ->add('summary', TextareaType::class, [
             'label' => '記事概要',
+            'required' => false,
         ])
         ->add('content', null, [
             'attr' => ['rows' => 20],

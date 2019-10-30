@@ -1,12 +1,14 @@
-<div class="movie-Area">
+{% for category in categories %}     
+    {% if not category.posts is empty %}         
+   <div class="movie-Area">
       <div class="movie-Area_Inner">
-         <h2 class="movie-Area_Title"><a href="{{ path('post_index') }}">新しい投稿</a></h2>
+         <h2 class="movie-Area_Title"><a href="{{ path('category_index', { 'slug': category.slug }) }}">カテゴリの{{ category.title }}の投稿</a></h2>
          <!-- Slider main container -->
          <div class="swiper-container">
             <!-- Additional required wrapper -->
             <div class="swiper-wrapper">
                <!-- Slides -->
-               {% for post in posts %}
+               {% for post in category.posts %}
                <div class="movie-Item swiper-slide">
                <a class="movie-Item_Link" href="{{ path('post_show', {'category': post.category.slug, 'slug': post.slug}) }}">
                <div class="movie-Item_Image">
@@ -34,7 +36,7 @@
             </div>
             {% else %}
             <div>
-                <p style="padding:20px 10px 0; font-size: 14px;">現在投稿はございません</p>
+                <p style="padding:20px 10px 0; font-size: 14px;">現在カテゴリ{{ category.title }}の投稿はございません</p>
             </div>
             {% endfor %}
             </div>
@@ -42,7 +44,8 @@
             <!-- If we need navigation buttons -->
             <div class="swiper-button-prev"></div>
             <div class="swiper-button-next"></div>
-
          </div>
       </div>
    </div>
+   {% endif %}
+   {% endfor %}

@@ -38,7 +38,7 @@ class CategoryMenuExtension extends AbstractExtension
             'childOpen' => '<li class="sw-Side_ItemList">',
             'childClose' => '</li>',
             'nodeDecorator' => function($node) {
-                return '<a class="sw-Side_ItemList--arrow" href="/post/category/'.$node['slug'].'">'.$node['title'].'</a>';
+                return '<a class="sw-Side_ItemList--arrow" href="/post/'.$node['slug'].'">'.$node['title'].'</a>';
             }
         );
         $menuLists = $categoryRepository->childrenHierarchy(

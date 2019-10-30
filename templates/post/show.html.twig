@@ -31,7 +31,7 @@
                <span class="post-Show_Content-trigger">続きを読む</span>
                <div class="post-Show_Content_Inner">
                   <p>
-                     {{ post.content }}
+                     {{ post.content|nl2br }}
                   </p>
                </div>
             </div>
@@ -39,10 +39,13 @@
     </div>
 </section>
 <section class="sw-Section">
+      {% include 'post/category_post.html.twig' %}
+</section>
+<section class="sw-Section">
    <div id="js-Post"></div>
    <div class="movie-Area">
       <div class="movie-Area_Inner">
-         <h2 class="movie-Area_Title"><a href="">〜の投稿</a></h2>
+         <h2 class="movie-Area_Title">他にはこんな動画をみています</h2>
          <!-- Slider main container -->
          <div class="swiper-container">
             <!-- Additional required wrapper -->
@@ -62,132 +65,6 @@
                   <div class="movie-Item_TagIcon">
                      <i class="fas fa-tags"></i>
                   </div>
-                  <ul class="movie-Item_TagList">
-                     <li class="movie-Item_TagItem"><a href="">タグ</a></li>
-                     <li class="movie-Item_TagItem"><a href="">タグ</a></li>
-                     <li class="movie-Item_TagItem"><a href="">タグ</a></li>
-                  </ul>
-               </div>
-            </div>
-            <div class="movie-Item swiper-slide">
-               <div class="movie-Item_Image">
-               <img src="{{ asset('images/images.jpg') }}" alt="仮画像">
-               </div>
-               <div class="movie-Item_Title">
-                  <p>動画タイトル動画タイトル動画タイトル動画タイトル</p>
-               </div>
-               <div class="movie-Item_Category">
-                  <a href="">カテゴリ</a>
-               </div>
-               <div class="movie-Item_Tag">
-                  <ul class="movie-Item_TagList">
-                     <li class="movie-Item_TagItem"><a href="">タグ</a></li>
-                     <li class="movie-Item_TagItem"><a href="">タグ</a></li>
-                     <li class="movie-Item_TagItem"><a href="">タグ</a></li>
-                  </ul>
-               </div>
-            </div>
-            <div class="movie-Item swiper-slide">
-               <div class="movie-Item_Image">
-               <img src="{{ asset('images/images.jpg') }}" alt="仮画像">
-               </div>
-               <div class="movie-Item_Title">
-                  <p>動画タイトル動画タイトル</p>
-               </div>
-               <div class="movie-Item_Category">
-                  <a href="">カテゴリ</a>
-               </div>
-               <div class="movie-Item_Tag">
-                  <ul class="movie-Item_TagList">
-                     <li class="movie-Item_TagItem"><a href="">タグ</a></li>
-                     <li class="movie-Item_TagItem"><a href="">タグ</a></li>
-                     <li class="movie-Item_TagItem"><a href="">タグ</a></li>
-                  </ul>
-               </div>
-            </div>
-            <div class="movie-Item swiper-slide">
-               <div class="movie-Item_Image">
-               <img src="{{ asset('images/images.jpg') }}" alt="仮画像">
-               </div>
-               <div class="movie-Item_Title">
-                  <p>動画タイトル動画タイトル</p>
-               </div>
-               <div class="movie-Item_Category">
-                  <a href="">カテゴリ</a>
-               </div>
-               <div class="movie-Item_Tag">
-                  <ul class="movie-Item_TagList">
-                     <li class="movie-Item_TagItem"><a href="">タグ</a></li>
-                     <li class="movie-Item_TagItem"><a href="">タグ</a></li>
-                     <li class="movie-Item_TagItem"><a href="">タグ</a></li>
-                  </ul>
-               </div>
-            </div>
-            <div class="movie-Item swiper-slide">
-               <div class="movie-Item_Image">
-               <img src="{{ asset('images/images.jpg') }}" alt="仮画像">
-               </div>
-               <div class="movie-Item_Title">
-                  <p>動画タイトル動画タイトル</p>
-               </div>
-               <div class="movie-Item_Category">
-                  <a href="">カテゴリ</a>
-               </div>
-               <div class="movie-Item_Tag">
-                  <ul class="movie-Item_TagList">
-                     <li class="movie-Item_TagItem"><a href="">タグ</a></li>
-                     <li class="movie-Item_TagItem"><a href="">タグ</a></li>
-                     <li class="movie-Item_TagItem"><a href="">タグ</a></li>
-                  </ul>
-               </div>
-            </div>
-            <div class="movie-Item swiper-slide">
-               <div class="movie-Item_Image">
-               <img src="{{ asset('images/images.jpg') }}" alt="仮画像">
-               </div>
-               <div class="movie-Item_Title">
-                  <p>動画タイトル動画タイトル</p>
-               </div>
-               <div class="movie-Item_Category">
-                  <a href="">カテゴリ</a>
-               </div>
-               <div class="movie-Item_Tag">
-                  <ul class="movie-Item_TagList">
-                     <li class="movie-Item_TagItem"><a href="">タグ</a></li>
-                     <li class="movie-Item_TagItem"><a href="">タグ</a></li>
-                     <li class="movie-Item_TagItem"><a href="">タグ</a></li>
-                  </ul>
-               </div>
-            </div>
-            <div class="movie-Item swiper-slide">
-               <div class="movie-Item_Image">
-               <img src="{{ asset('images/images.jpg') }}" alt="仮画像">
-               </div>
-               <div class="movie-Item_Title">
-                  <p>動画タイトル動画タイトル</p>
-               </div>
-               <div class="movie-Item_Category">
-                  <a href="">カテゴリ</a>
-               </div>
-               <div class="movie-Item_Tag">
-                  <ul class="movie-Item_TagList">
-                     <li class="movie-Item_TagItem"><a href="">タグ</a></li>
-                     <li class="movie-Item_TagItem"><a href="">タグ</a></li>
-                     <li class="movie-Item_TagItem"><a href="">タグ</a></li>
-                  </ul>
-               </div>
-            </div>
-             <div class="movie-Item swiper-slide">
-               <div class="movie-Item_Image">
-               <img src="{{ asset('images/images.jpg') }}" alt="仮画像">
-               </div>
-               <div class="movie-Item_Title">
-                  <p>動画タイトル動画タイトル</p>
-               </div>
-               <div class="movie-Item_Category">
-                  <a href="">カテゴリ</a>
-               </div>
-               <div class="movie-Item_Tag">
                   <ul class="movie-Item_TagList">
                      <li class="movie-Item_TagItem"><a href="">タグ</a></li>
                      <li class="movie-Item_TagItem"><a href="">タグ</a></li>
@@ -233,8 +110,10 @@
          var devW = 767;
          if (winW <= devW) {
             //767px以下の時の処理
+            $(".post-Show_Movie-pc").remove();
          } else {
             //768pxより大きい時の処理
+            $(".post-Show_Movie-sp").remove();
          }
       });
       var itemHeights = []; //
