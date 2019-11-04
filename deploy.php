@@ -21,6 +21,10 @@ set('git_tty', true);
 // add('writable_dirs', []);
 set('allow_anonymous_stats', false);
 
+
+set('current_path', function () {
+    return run('pwd');
+});
 // Hosts
 
 host('fgc.mixh.jp')
