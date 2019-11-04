@@ -38,6 +38,12 @@ host('fgc.mixh.jp')
     
 // Tasks
 
+task('change_cwd', function () {
+    $subdir = get('release_path') . DIRECTORY_SEPARATOR . 'webapp';
+    set('release_path', $subdir);
+    run('cd {{release_path}}');
+  });
+  
 task('build', function () {
     run('cd {{release_path}} && build');
 });
@@ -45,6 +51,8 @@ task('build', function () {
 task('deploy:assets:install', function () {
     run('{{bin/php}} {{bin/console}} assets:install {{console_options}} {{release_path}}/public');
 })->desc('Install bundle assets');
+
+after('deploy:update_code', 'change_cwd');
 
 // [Optional] if deploy fails automatically unlock.
 after('deploy:failed', 'deploy:unlock');
