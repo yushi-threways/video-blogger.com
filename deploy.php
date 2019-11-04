@@ -38,6 +38,10 @@ task('build', function () {
     run('cd {{release_path}} && build');
 });
 
+task('deploy:assets:install', function () {
+    run('{{bin/php}} {{bin/console}} assets:install {{console_options}} {{release_path}}/public');
+})->desc('Install bundle assets');
+
 // [Optional] if deploy fails automatically unlock.
 after('deploy:failed', 'deploy:unlock');
 
