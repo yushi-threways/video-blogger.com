@@ -1,6 +1,7 @@
 <?php
 namespace Deployer;
 
+require 'vendor/autoload.php';
 require 'recipe/symfony4.php';
 
 // Project name
