@@ -39,7 +39,7 @@ host('fgc.mixh.jp')
 // Tasks
 
 task('change_cwd', function () {
-    $subdir = get('release_path') . DIRECTORY_SEPARATOR . 'webapp';
+    $subdir = get('release_path') . DIRECTORY_SEPARATOR;
     set('release_path', $subdir);
     run('cd {{release_path}}');
   });
