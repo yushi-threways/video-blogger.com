@@ -27,7 +27,7 @@ host('fgc.mixh.jp')
     ->hostname('fgc.mixh.jp')
     ->port(22)
     ->stage('staging')
-    ->set('branch', 'master')
+    ->set('branch', 'prod')
     ->set('composer_options', '{{composer_action}} --verbose --prefer-dist --no-progress --no-interaction --optimize-autoloader --no-dev')
     ->set('deploy_path', '~/public_html/{{application}}');
     
