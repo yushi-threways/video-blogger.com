@@ -21,10 +21,6 @@ set('git_tty', true);
 // add('writable_dirs', []);
 set('allow_anonymous_stats', false);
 
-
-set('current_path', function () {
-    return run('pwd');
-});
 // Hosts
 
 host('fgc.mixh.jp')
@@ -32,9 +28,10 @@ host('fgc.mixh.jp')
     ->hostname('fgc.mixh.jp')
     ->port(22)
     ->stage('staging')
-    ->set('branch', 'prod')
+    ->set('branch', 'staging')
     ->set('composer_options', '{{composer_action}} --verbose --prefer-dist --no-progress --no-interaction --optimize-autoloader --no-dev')
-    ->set('deploy_path', '~/public_html/{{application}}');
+    ->set('deploy_path', '~/public_html/vlogger/{{application}}')
+    ->add('shared_files', ['.env.local', 'public/.htaccess'])   ;
     
 // Tasks
 
