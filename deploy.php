@@ -30,7 +30,7 @@ host('vlogger.fgc.mixh.jp')
     ->set('branch', 'master')
     ->set('composer_options', '{{composer_action}} --prefer-dist --no-progress --no-interaction --optimize-autoloader --no-dev')
     ->set('deploy_path', '~/public_html/vlogger/{{application}}')
-    ->add('shared_files', ['.env.local'])   ;
+    ->add('shared_files', ['.env.local']);
     
 // Tasks
 
