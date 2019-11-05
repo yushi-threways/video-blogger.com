@@ -34,13 +34,15 @@ host('vlogger.fgc.mixh.jp')
     
 // Tasks
 
+task('build:assets', function(){
+    runLocally('yarn build');
+    upload('public/build/', '{{release_path}}/public');
+});
+before('deploy:symlink', 'build:assets');
+
 task('build', function () {
     run('cd {{release_path}} && build');
 });
-
-task('deploy:assets:install', function () {
-    run('{{bin/php}} {{bin/console}} assets:install {{console_options}} {{release_path}}/public');
-})->desc('Install bundle assets');
 
 // [Optional] if deploy fails automatically unlock.
 after('deploy:failed', 'deploy:unlock');
