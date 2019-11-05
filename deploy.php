@@ -1,6 +1,7 @@
 <?php
 namespace Deployer;
 
+require 'vendor/autoload.php';
 require 'recipe/symfony4.php';
 
 // Project name
@@ -27,15 +28,20 @@ host('fgc.mixh.jp')
     ->hostname('fgc.mixh.jp')
     ->port(22)
     ->stage('staging')
-    ->set('branch', 'master')
+    ->set('branch', 'staging')
     ->set('composer_options', '{{composer_action}} --verbose --prefer-dist --no-progress --no-interaction --optimize-autoloader --no-dev')
-    ->set('deploy_path', '~/public_html/{{application}}');
+    ->set('deploy_path', '~/public_html/vlogger/{{application}}')
+    ->add('shared_files', ['.env.local', 'public/.htaccess'])   ;
     
 // Tasks
 
 task('build', function () {
     run('cd {{release_path}} && build');
 });
+
+task('deploy:assets:install', function () {
+    run('{{bin/php}} {{bin/console}} assets:install {{console_options}} {{release_path}}/public');
+})->desc('Install bundle assets');
 
 // [Optional] if deploy fails automatically unlock.
 after('deploy:failed', 'deploy:unlock');
