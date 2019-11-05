@@ -23,15 +23,15 @@ set('allow_anonymous_stats', false);
 
 // Hosts
 
-host('fgc.mixh.jp')
+host('vlogger.fgc.mixh.jp')
     ->user('lbqhvbsc')
     ->hostname('fgc.mixh.jp')
     ->port(22)
     ->stage('staging')
-    ->set('branch', 'staging')
+    ->set('branch', 'master')
     ->set('composer_options', '{{composer_action}} --verbose --prefer-dist --no-progress --no-interaction --optimize-autoloader --no-dev')
     ->set('deploy_path', '~/public_html/vlogger/{{application}}')
-    ->add('shared_files', ['.env.local', 'public/.htaccess'])   ;
+    ->add('shared_files', ['.env.local'])   ;
     
 // Tasks
 
