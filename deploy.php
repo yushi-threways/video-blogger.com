@@ -33,6 +33,10 @@ host('vlogger.fgc.mixh.jp')
     ->add('shared_files', ['.env.local']);
     
 // Tasks
+task('pwd', function () {
+    $result = run('pwd');
+    writeln("Current dir: $result");
+});
 
 task('build:assets', function(){
     runLocally('yarn build');
