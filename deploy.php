@@ -4,10 +4,10 @@ namespace Deployer;
 require 'recipe/symfony4.php';
 
 // Project name
-set('application', 'Vlogger');
+set('application', 'vlogger');
 
 // Project repository
-set('repository', 'git@github.com:fgc0415/Vlogger.git');
+set('repository', 'git@github.com:fgc0415/vlogger.git');
 
 // [Optional] Allocate tty for git clone. Default value is false.
 set('git_tty', true);
