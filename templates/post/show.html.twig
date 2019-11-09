@@ -11,6 +11,7 @@
 {% endblock %}
 
 {% block main %}
+ <div class="sw-Content_Inner sw-Content_PaddingMd">
 <section class="sw-Section">
     <div class="post-Show">
         <div class="post-Show_Inner">
@@ -28,12 +29,12 @@
             </div>
             <div class="post-Show_Title">{{ post.title }}</div>
             <div class="post-Show_Content">
-               <span class="post-Show_Content-trigger">続きを読む</span>
                <div class="post-Show_Content_Inner">
                   <p>
                      {{ post.content|nl2br }}
                   </p>
                </div>
+               <span class="post-Show_Content-trigger">続きを読む</span>
             </div>
         </div>
     </div>
@@ -42,64 +43,10 @@
       {% include 'post/category_post.html.twig' %}
 </section>
 <section class="sw-Section">
-   <div id="js-Post"></div>
-   <div class="movie-Area">
-      <div class="movie-Area_Inner">
-         <h2 class="movie-Area_Title">他にはこんな動画をみています</h2>
-         <!-- Slider main container -->
-         <div class="swiper-container">
-            <!-- Additional required wrapper -->
-            <div class="swiper-wrapper">
-               <!-- Slides -->
-               <div class="movie-Item swiper-slide">
-               <div class="movie-Item_Image">
-               <img src="{{ asset('images/images.jpg') }}" alt="仮画像">
-               </div>
-               <div class="movie-Item_Title">
-                  <p>動画タイトル動画タイトル</p>
-               </div>
-               <div class="movie-Item_Category">
-                  <a href="">カテゴリ</a>
-               </div>
-               <div class="movie-Item_Tag">
-                  <div class="movie-Item_TagIcon">
-                     <i class="fas fa-tags"></i>
-                  </div>
-                  <ul class="movie-Item_TagList">
-                     <li class="movie-Item_TagItem"><a href="">タグ</a></li>
-                     <li class="movie-Item_TagItem"><a href="">タグ</a></li>
-                     <li class="movie-Item_TagItem"><a href="">タグ</a></li>
-                  </ul>
-               </div>
-            </div>
-            <div class="movie-Item swiper-slide">
-               <div class="movie-Item_Image">
-               <img src="{{ asset('images/images.jpg') }}" alt="仮画像">
-               </div>
-               <div class="movie-Item_Title">
-                  <p>動画タイトル動画タイトル</p>
-               </div>
-               <div class="movie-Item_Category">
-                  <a href="">カテゴリ</a>
-               </div>
-               <div class="movie-Item_Tag">
-                  <ul class="movie-Item_TagList">
-                     <li class="movie-Item_TagItem"><a href="">タグ</a></li>
-                     <li class="movie-Item_TagItem"><a href="">タグ</a></li>
-                     <li class="movie-Item_TagItem"><a href="">タグ</a></li>
-                  </ul>
-               </div>
-            </div>
-            </div>
-
-            <!-- If we need navigation buttons -->
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-button-next"></div>
-
-         </div>
-      </div>
-   </div>
-</section>
+      {% set posts = randPosts %}
+      {% include 'post/rand_post.html.twig' with posts %}
+</section> 
+</div>
 {% endblock %}
 
 {% block javascripts %}

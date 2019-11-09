@@ -32,4 +32,13 @@ class CategoryRepository extends NestedTreeRepository implements ServiceEntityRe
         }
         parent::__construct($manager, $manager->getClassMetadata($entityClass));
     }
+
+    public function getCategoriesPosts($limit = null)
+    {
+        $qb = $this->createQueryBuilder("c");
+        $qb->setMaxResults($limit)
+        ;
+        
+        return $qb->getQuery()->getResult();
+    }
 }

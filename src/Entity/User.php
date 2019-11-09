@@ -40,6 +40,12 @@ class User extends BaseUser
     {
         return $this->id;
     }
+    public function setEmail($email)
+    {
+        $email = is_null($email) ? '' : $email;
+        parent::setEmail($email);
+        $this->setUsername($email);
+    }
     public function getCreatedAt(): ?\DateTimeInterface
     {
         return $this->createdAt;
@@ -58,7 +64,6 @@ class User extends BaseUser
         $this->updatedAt = $updatedAt;
         return $this;
     }
-   
     /**
      * @ORM\PrePersist()
      */

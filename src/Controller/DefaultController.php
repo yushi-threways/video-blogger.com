@@ -15,8 +15,8 @@ class DefaultController extends AbstractController
     public function index(PostRepository $postRepository, CategoryRepository $categoryRepository)
     {
 
-        $posts = $postRepository->findAll(['created_at' => 'ASC']);
-        $categories = $categoryRepository->findAll(['created_at' => 'ASC']);
+        $posts = $postRepository->getNewPosts(10);
+        $categories = $categoryRepository->getCategoriesPosts(20);
         
         return $this->render('default/index.html.twig', [
             'posts' => $posts,

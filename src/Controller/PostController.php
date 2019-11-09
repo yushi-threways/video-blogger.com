@@ -23,22 +23,25 @@ class PostController extends AbstractController
      */
     public function index(PostRepository $postRepository): Response
     {
-        $posts = $postRepository->findAll();
+        $posts = $postRepository->getNewPosts();
         return $this->render('post/index.html.twig', [
             'posts' => $posts,
         ]);
     }
 
-    
-
     /**
      * @Route("/{category}/{slug}", name="post_show", methods={"GET"})
      * @ParamConverter("post", options={"mapping": {"category": "category.slug", "slug": "slug"}})
      */
-    public function show(Post $post): Response
+    public function show(Post $post, PostRepository $postRepository, $category): Response
     {
+        $title = $post->getCategory()->getTitle();
+        $categoryPosts = $postRepository->getCategoryPosts($title, $post->getId(),10);
+        $randPosts = $postRepository->getNewPosts(10);        
         return $this->render('post/show.html.twig', [
             'post' => $post,
+            'categoryPosts' => $categoryPosts,
+            'randPosts' => $randPosts,
         ]);
     }
 }

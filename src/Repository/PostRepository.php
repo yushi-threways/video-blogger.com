@@ -19,9 +19,50 @@ class PostRepository extends ServiceEntityRepository
         parent::__construct($registry, Post::class);
     }
 
-    public function getNewPost()
+    public function getNewPosts($limit = null)
     {
+        $qb = $this->createQueryBuilder("p");
+        $qb->where('p.publishedAt <= :today')
+           ->setParameters([
+                "today" => new \DateTime(),
+            ])
+            ->setMaxResults($limit)
+            ->orderBy('p.createdAt', 'DESC')
+        ;
         
+        return $qb->getQuery()->getResult();
     }
 
+    public function getRandPosts($limit = null)
+    {
+        $qb = $this->createQueryBuilder("p");
+        $qb->where('p.publishedAt <= :today')
+           ->setParameters([
+                "today" => new \DateTime(),
+            ])
+            ->setMaxResults($limit)
+            ->orderBy('p.createdAt', 'DESC')
+        ;
+        
+        return $qb->getQuery()->getResult();
+    }
+    
+    public function getCategoryPosts($title, $id, $limit = null)
+    {
+        $qb = $this->createQueryBuilder("p");
+        $qb->join("p.category", "c")
+            ->where('c.title = :title')
+            ->andWhere("p.id != :id")
+            ->andWhere("p.publishedAt <= :today")
+            ->setParameters([
+                "id" => $id,
+                "title" => $title,
+                "today" => new \DateTime(),
+            ])
+            ->setMaxResults($limit)
+            ->orderBy('p.createdAt', 'DESC')
+        ;
+        
+        return $qb->getQuery()->getResult();
+    }
 }

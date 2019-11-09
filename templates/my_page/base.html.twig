@@ -79,7 +79,7 @@
                                             </button>
                                             <ul class="sw-Header_MainNavItems">
                                                 {% if is_granted('ROLE_USER') %}
-                                                    <li class="sw-Header_MainNavItem"><a href="{{ path('mypage_index') }}">マイページ</a></li>
+                                                    <li class="sw-Header_MainNavItem"><a href="{{ path('default_index') }}">マイページ</a></li>
                                                 {% else %}
                                                     <li class="sw-Header_MainNavItem"><a href="{{ path('fos_user_registration_register') }}">会員登録</a></li>
                                                     <li class="sw-Header_MainNavItem"><a href="{{ path('fos_user_security_login') }}">ログイン</a></li>
@@ -104,17 +104,14 @@
                                     <div class="sw-Side_Inner">
                                         <ul class="sw-Side_Items">
                                             <li class="sw-Side_Item">
-                                               {{ categoryLists()|raw }}
-                                            </li>
-                                            <li class="sw-Side_Item">
-                                                <h3 class="sw-Side_ItemTitle">コンテンツ</h3>
+                                                <h3 class="sw-Side_ItemTitle">マイページ</h3>
                                                 <ul class="sw-Side_ItemLists">
-                                                    <li class="sw-Side_ItemList"><a href="{{ path('site_static', {page: "about"}) }}">Vlogまとめについて</a></li>
-                                                    <li class="sw-Side_ItemList"><a href="{{ path('site_static', {page: "qa"}) }}">お問い合わせ</a></li> 
-                                                    <li class="sw-Side_ItemList"><a href="{{ path('site_static', {page: "qa"}) }}">利用規約</a></li> 
-                                                    <li class="sw-Side_ItemList"><a href="{{ path('site_static', {page: "qa"}) }}">プライバシーポリシー</a></li> 
-                                                    <li class="sw-Side_ItemList"><a href="{{ path('site_static', {page: "qa"}) }}">ヘルプ</a></li>
+                                                    <li class="sw-Side_ItemList"><a href="{{ path('site_static', {page: "about"}) }}">お気に入り</a></li>
+                                                    <li class="sw-Side_ItemList"><a href="{{ path('mypage_profile') }}">登録情報</a></li>
                                                 </ul>
+                                            </li>
+                                             <li class="sw-Side_Item">
+                                               {{ categoryLists()|raw }}
                                             </li>
                                         </ul>                  
                                     </div>

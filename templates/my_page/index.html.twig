@@ -1,0 +1,59 @@
+{% extends "/my_page/base.html.twig" %}
+
+{% block title %}マイページトップ｜オミパリマイページ{% endblock %}
+{% block description %}{% endblock %}
+
+
+{% block main %}
+<div class="sw-Contnet_Inner sw-Content_PaddingMypage">
+<section class="sw-Section">
+    <div class="my-Content">
+        <div class="my-Content_Inner">
+            <div class="">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a href="#applied" class="nav-link active" data-toggle="tab">あ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#accepted" class="nav-link" data-toggle="tab">い</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#past_event" class="nav-link" data-toggle="tab">う</a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                <div id="applied" class="tab-pane active">
+                </div>
+                <div id="accepted" class="tab-pane">
+                </div>
+                <div id="past_event" class="tab-pane">
+                </div>
+                </div>    
+            </div>
+            <ul class="my-Content_List">
+                <li class="my-Content_Item">
+                </li>
+                <li class="my-Content_Item">
+                    <a href="">申し込み中のイベント</a>
+                </li>
+                <li class="my-Content_Item">
+                    <a href="">参加したイベント</a>
+                </li>
+                <li class="my-Content_Item">
+                    <a href="">パスワード変更</a>
+                </li>
+                <li class="my-Content_Item">
+                    <a href="">メールアドレス変更</a>
+                </li>
+                 <li class="my-Content_Item">
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+</div>
+{% endblock %}
+
+{% block javascript %}
+    {{ parent() }}
+{% endblock %}
