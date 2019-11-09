@@ -4,9 +4,33 @@
     margin: 0;
     order: 2;
     padding-right: 18px;
-    padding-left: 280px;
     @include media-breakpoint-down(sm) {
         padding: 0;
         order: 1;
+    }
+}
+
+.sw-Content_PaddingSm {
+    padding-left: 30px;
+    @include media-breakpoint-down(sm) {
+        padding: 0;
+    }
+}
+.sw-Content_PaddingMd {
+    padding-left: 250px;
+    @include media-breakpoint-down(sm) {
+        padding: 0;
+    }
+}
+.sw-Content_PaddingLg {
+    padding-left: 280px;
+    @include media-breakpoint-down(sm) {
+        padding: 0;
+    }
+}
+.sw-Content_PaddingMypage {
+    padding-left: 60px;
+    @include media-breakpoint-down(sm) {
+        padding: 0;
     }
 }

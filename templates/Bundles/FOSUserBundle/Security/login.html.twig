@@ -1,0 +1,11 @@
+{% extends "@FOSUser/layout.html.twig" %}
+
+{% block fos_user_content %}
+<div class=" mypage-Login">
+    <h1 class="mypage-Login_Title">ログイン</h1>
+    <div class="mypage-Login_Form">
+    {{ include('@FOSUser/Security/login_content.html.twig') }}
+    </div>
+</div>
+{% endblock fos_user_content %}
+   

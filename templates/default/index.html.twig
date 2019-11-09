@@ -12,10 +12,12 @@
 {% endblock %}
 
 {% block main %}
-<section class="sw-Section">
-   {% include 'parts/new_post.html.twig' %}
-   {% include 'parts/category_post.html.twig' %}
-</section>
+<div class="sw-Content_Inner sw-Content_PaddingLg">
+   <section class="sw-Section">
+      {% include 'parts/new_post.html.twig' %}
+      {% include 'parts/category_post.html.twig' %}
+   </section>
+</div>
 {% endblock %}
 
 {% block javascripts %}

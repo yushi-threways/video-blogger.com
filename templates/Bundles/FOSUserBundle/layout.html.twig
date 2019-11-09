@@ -5,28 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="format-detection" content="telephone=no">
 
-    {% set title = 'オミパリ' %}
-    {% set description = 'オミパリとは街コンイベント運営会社です。愛知県名古屋を' %}
-    {% set canonical = 'canonical' %}
-    <title>{{ title }}</title>
-    <meta name="description" content="{{ description }}">
-    <link rel="canonical" href="{{ canonical }}">
-
-    {% block og %}
-    <meta property="og:site_name" content="オミパリ">
-    <meta property="og:title" content="{{ title }}">
-    <meta property="og:description" content="{{ description }}">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="サイトのURL貼る">
-    <meta property="og:image" content="ogpのURL貼る">
-    {% endblock %}
-    
-    {% block twitter %}
-    <meta property="fb:app_id" content="App-ID（15文字の半角数字）" />
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:site" content="サイトのURL貼る">
-    <meta name="twitter:image" content="ogpのURL貼る">
-    {% endblock %}
 
     {% block stylesheets %}
         {# 'app' must match the first argument to addEntry() in webpack.config.js #}
@@ -37,17 +15,33 @@
     {% endblock %}
     </head>
     <body>
-    {% if form is defined %}
-                        {% form_theme form "../../form/layout.html.twig" %}
+        <div class="sw-Body">
+            {% block alert %}
+                    <div class="sw-Alert">
+                        {% for key, messages in app.session.flashBag.all %}
+                            {% for message in messages %}
+                                <div class="alert alert-{{ key }}">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                        {% endfor %}
+                    </div>
+            {% endblock %}
+
+            <div class="sw-Body_Inner">
+
+                {% block body %}
+                    {% if form is defined %}
+                        {% form_theme form "form/layout.html.twig" %}
                     {% endif %}
-                    <header class="sw-Header">
+                    <header class="sw-Header js-fixed-header" id="header">
                         {% block header %}
                         <div class="sw-Header_Inner">
                             <div class="sw-Header_Branding">
                                 <div class="sw-Header_Logo">
-                                    <p class="sw-Header_Lead">
-                                        <strong>Vlog</strong>まとめ
-                                    </p>
                                     <a class="sw-Header_LogoMark" href="{{ path('default_index') }}">
                                     Vlogger
                                     </a>
@@ -56,15 +50,18 @@
                                 <div class="sw-Header_MainNavOuter">
                                     <nav class="sw-Header_MainNav">
                                         <div class="sw-Header_MainNavInner">
+                                            <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
+                                                <i></i>
+                                                <i></i>
+                                                <i></i>
+                                            </button>
                                             <ul class="sw-Header_MainNavItems">
                                                 {% if is_granted('ROLE_USER') %}
                                                     <li class="sw-Header_MainNavItem"><a href="{{ path('default_index') }}"><i class="fa fa-address-card"></i><br>マイページ</a></li>
                                                 {% else %}
-                                                    <li class="sw-Header_MainNavItem"><a href="{{ path('fos_user_registration_register') }}"><i class="fa fa-address-card"></i><br>会員登録</a></li>
-                                                    <li class="sw-Header_MainNavItem"><a href="{{ path('fos_user_security_login') }}"><i class="fa fa-unlock-alt"></i><br>ログイン</a></li>
+                                                    <li class="sw-Header_MainNavItem"><a href="{{ path('fos_user_registration_register') }}">会員登録</a></li>
+                                                    <li class="sw-Header_MainNavItem"><a href="{{ path('fos_user_security_login') }}">ログイン</a></li>
                                                 {% endif %}
-                                                    <li class="sw-Header_MainNavItem"><a href="{{ path('site_static', {page: "about"}) }}"><i class="fas fa-leaf"></i><br>ガイド</a></li>
-                                                    <li class="sw-Header_MainNavItem"><a href="{{ path('site_static', {page: "qa"}) }}"><i class="far fa-question-circle"></i><br>ヘルプ</a></li>
                                             </ul>
                                         </div>
                                     </nav>
@@ -73,7 +70,6 @@
                         </div>
                         {% endblock %}
                     </header>
-        <div>
             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                 {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
                 <a href="{{ path('fos_user_security_logout') }}">
@@ -98,5 +94,7 @@
             {% block fos_user_content %}
             {% endblock fos_user_content %}
         </div>
+        {% endblock %}
+    <div>   
     </body>
 </html>

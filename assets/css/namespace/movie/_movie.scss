@@ -32,6 +32,9 @@
         display: inline-block;
         margin-right: 16px;
         font-weight: normal;
+        @include media-breakpoint-down(sm) {
+            @include font-size(16px);
+        }
     }
 }
 .movie-List {
