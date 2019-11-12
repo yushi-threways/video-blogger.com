@@ -1,5 +1,19 @@
 {% extends "/my_page/profile-base.html.twig" %}
 
 {% block fos_user_content %}
-{% include "@FOSUser/Profile/show_content.html.twig" %}
+<div class="sw-Content_PaddingMy">
+    <div class="mypage-Profile_Show">
+        {% include "@FOSUser/Profile/show_content.html.twig" %}
+    </div>
+    <div class="mypage-Profile_Link">
+        <ul class="mypage-Profile_LinkUnit">
+            <li class="mypage-Profile_LinkItem">
+                <a href="{{ path("mypage_profile_edit") }}">基本情報を変更する</a>
+            </li>
+            <li class="mypage-Profile_LinkItem">
+                <a href="{{ path("mypage_change_password") }}">パスワードを変更する</a>
+            </li>
+        </ul>
+    </div>
+</div>
 {% endblock fos_user_content %}
