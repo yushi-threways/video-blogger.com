@@ -30,10 +30,16 @@ class User extends BaseUser
      */
     private $updatedAt;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Favorite", mappedBy="user")
+     */
+    private $favorites;
+
 
     public function __construct()
     {
         parent::__construct();
+        $this->favorites = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -80,6 +86,42 @@ class User extends BaseUser
     public function onPostUpdate()
     {
         $this->updatedAt = new \DateTime();
+        return $this;
+    }
+
+    /**
+     * @return Collection|Favorite[]
+     */
+    public function getFavorites(): Collection
+    {
+        return $this->favorites;
+    }
+
+    public function addFavorite(Favorite $favorite): self
+    {
+        if (!$this->favorites->contains($favorite)) {
+            $this->favorites[] = $favorite;
+            $favorite->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function hasFavorite(Favorite $favorite): bool
+    {
+        return $this->getFavorites()->contains($favorite);
+    }
+
+    public function removeFavorite(Favorite $favorite): self
+    {
+        if ($this->favorites->contains($favorite)) {
+            $this->favorites->removeElement($favorite);
+            // set the owning side to null (unless already changed)
+            if ($favorite->getUser() === $this) {
+                $favorite->setUser(null);
+            }
+        }
+
         return $this;
     }
 }

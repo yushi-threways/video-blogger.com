@@ -120,11 +120,17 @@ class Post
      */
     private $category;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Favorite", mappedBy="post")
+     */
+    private $favorites;
+
     public function __construct()
     {
         $this->publishedAt = new \DateTime();
         $this->comments = new ArrayCollection();
         $this->tags = new ArrayCollection();
+        $this->favorites = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -237,6 +243,43 @@ class Post
     public function setCategory(?Category $category): self
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Favorite[]
+     */
+    public function getFavorites(): Collection
+    {
+        return $this->favorites;
+    }
+
+    public function addFavorite(Favorite $favorite): self
+    {
+        if (!$this->favorites->contains($favorite)) {
+            $this->favorites[] = $favorite;
+            $favorite->setPost($this);
+        }
+
+        return $this;
+    }
+
+    public function hasFavorite(Post $post): bool
+    {
+        $favorites = $this->getFavorites();
+        return $favorites->contains($post);
+    }
+
+    public function removeFavorite(Favorite $favorite): self
+    {
+        if ($this->favorites->contains($favorite)) {
+            $this->favorites->removeElement($favorite);
+            // set the owning side to null (unless already changed)
+            if ($favorite->getPost() === $this) {
+                $favorite->setPost(null);
+            }
+        }
 
         return $this;
     }

@@ -17,6 +17,8 @@
       <div class="post-Index_Inner">
          <h2 class="post-Index_Title">新しい投稿一覧</h2>
             <div class="post-List">
+                        {{ dump(favorite) }}
+
                {% for post in posts %}
                <div class="post-Item">
                <a class="post-Item_Link" href="{{ path('post_show', {'category': post.category.slug, 'slug': post.slug}) }}">
@@ -42,6 +44,12 @@
                      <li class="post-Item_TagItem"><a href="">タグ</a></li>
                   </ul>
                </div>
+               {# {% set isFavorite = is_favorite(post) %}
+               {{ isFavorite? '<i class="far fa-star">':'<i class="far fa-star">' }} #}
+               <button type="button" class="post-Item_Favorite btn btn-primary"
+                  data-add-url="{{ path("add_post_favorite", {id: post.id}) }}"
+                  data-remove-url="{{ path("remove_post_favorite", {id: post.id}) }}"
+               >お気に</button>
             </div>
             {% else %}
             <div>
