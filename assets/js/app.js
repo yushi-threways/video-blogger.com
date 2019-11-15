@@ -20,3 +20,4 @@ import './sb-admin';
 import './swiper';
 import './vlog-menu';
 import './datapicker';
+import './favorite-post';

@@ -26,10 +26,15 @@ class CategoryMenuExtension extends AbstractExtension
         ];
     }
 
+    public function getCategoryRepository()
+    {
+        return $this->em->getRepository(Category::class);
+    }
     
     public function buildCategoryLists() 
     {
-        $categoryRepository = $this->em->getRepository(Category::class);
+        
+        $categoryRepository = $this->getCategoryRepository();
 
         $options = array(
             'decorate' => true,

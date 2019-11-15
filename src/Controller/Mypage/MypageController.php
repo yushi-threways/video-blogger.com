@@ -21,6 +21,10 @@ class MypageController extends AbstractController
         /** @var User $user */
         $user = $this->getUser();
 
+        if (!is_object($user) || !$user instanceof UserInterface) {
+            throw new AccessDeniedException('ログインしてください。');
+        }
+
         return $this->render('my_page/index.html.twig', [
             'user' => $user,
         ]);
