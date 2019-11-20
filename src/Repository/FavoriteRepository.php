@@ -31,25 +31,33 @@ class FavoriteRepository extends ServiceEntityRepository
         return $this->findOneBy(['post' => $post]);
     }
 
-    public function findOneOrCreateByUse(User $user, Post $post, bool $flush = true): Favorite
-    {
 
-        $favoriteUser = $this->findOneByUser($user);
-        $favoritePost = $this->findOneByPost($post);
-        
-        if (!$favorites->contains($user)) {
+    public function findOneOrCreateByUser(User $user, Post $post, bool $flush = true): ?Favorite
+    {
+        $query = $this->createQueryBuilder('f');
+        $query->where('f.post = :post')
+            ->andWhere('f.user = :user')
+            ->setParameters([
+                'user' => $user,
+                'post' => $post,
+            ])
+        ;
+
+
+        $favorite = $query->getQuery()->getOneOrNullResult();
+        if(!$favorite) {
+
             $favorite = new Favorite();
             $favorite->setUser($user);
             $favorite->setPost($post);
-
             $this->_em->persist($favorite);
             if ($flush) {
                 $this->_em->flush($favorite);
             }
             return $favorite;
-        }
-
-        return $favorite;
+        } else {
+            return $favorite;
+        }    
     }
 
     
