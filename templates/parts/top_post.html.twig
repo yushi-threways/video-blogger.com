@@ -1,0 +1,27 @@
+<div class="movie-Area">
+      <div class="movie-Area_Inner">
+         <!-- Slider main container -->
+         <div class="top-swiper-container">
+            <!-- Additional required wrapper -->
+            <div class="swiper-wrapper">
+               <!-- Slides -->
+               {% for post in posts %}
+               <div class="top-Movie_Item swiper-slide">
+               <a class="top-Movie_Item-link" href="{{ path('post_show', {'category': post.category.slug, 'slug': post.slug}) }}">
+               <div class="top-Movie_Item-image">
+               <img src="http://i.ytimg.com/vi/{{ post.video }}/sddefault.jpg" alt="{{ post.title }}">
+               </div>
+               </a>
+            </div>
+            {% else %}
+            
+            {% endfor %}
+            </div>
+
+            <!-- If we need navigation buttons -->
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+
+         </div>
+      </div>
+   </div>
