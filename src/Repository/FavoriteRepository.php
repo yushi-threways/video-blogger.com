@@ -21,9 +21,9 @@ class FavoriteRepository extends ServiceEntityRepository
         parent::__construct($registry, Favorite::class);
     }
 
-    public function findByUser(User $user)
+    public function findOneByUser(User $user)
     {
-        return $this->findBy(['user' => $user]);
+        return $this->findOneBy(['user' => $user]);
     }
 
     public function findOneByPost(Post $post): ?Favorite
@@ -31,10 +31,12 @@ class FavoriteRepository extends ServiceEntityRepository
         return $this->findOneBy(['post' => $post]);
     }
 
-    public function findOneOrCreateByUser(User $user, Post $post, bool $flush = true): Favorite
+    public function findOneOrCreateByUse(User $user, Post $post, bool $flush = true): Favorite
     {
 
-        $favorites = $user->getFavorites();
+        $favoriteUser = $this->findOneByUser($user);
+        $favoritePost = $this->findOneByPost($post);
+        
         if (!$favorites->contains($user)) {
             $favorite = new Favorite();
             $favorite->setUser($user);
@@ -50,22 +52,32 @@ class FavoriteRepository extends ServiceEntityRepository
         return $favorite;
     }
 
-    // /**
-    //  * @return Favorite[] Returns an array of Favorite objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    
+    public function findOneOrCreateByUser(User $user, Post $post, bool $flush = true)
     {
-        return $this->createQueryBuilder('f')
-            ->andWhere('f.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('f.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
+        $qb = $this->createQueryBuilder('f');
+        $qb->where('f.user = :user')
+            ->andWhere('f.post = :post')
+            ->setParameters([
+                'user' => $user,
+                'post' => $post,
+            ])
         ;
+
+        if (!$qb) {
+            $favorite = new Favorite();
+            $favorite->setUser($user);
+            $favorite->setPost($post);
+            $this->_em->persist($favorite);
+                if ($flush) {
+                    $this->_em->flush($favorite);
+                }
+            return $favorite;
+        } else {
+            return $qb;
+        }
+        
     }
-    */
 
     /*
     public function findOneBySomeField($value): ?Favorite

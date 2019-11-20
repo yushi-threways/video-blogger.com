@@ -130,12 +130,9 @@
         }
     }
 }
-.sw-Side_ItemList--arrow {
-    background: url(../../../../public/images/right-arrow@2x.png) no-repeat center right 20px;
-    background-size: 10px;
-}
+
 .swiper-container {
-    width: 95%;
+    // width: 95%;
     margin: 0;
     overflow: hidden;
     @include media-breakpoint-down(sm) {

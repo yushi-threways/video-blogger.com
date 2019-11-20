@@ -9,7 +9,8 @@
 
 $(function() {
     $('.menu-toggle').on('click', function () {
-     $('.sw-Header_MainNavInner').toggleClass('open-btn');
-     $('.sw-Side').toggleClass('open');
+        $('html').toggleClass('menu-opend');
+        $('.sw-Header_MainNavInner').toggleClass('open-btn');
+        $('.sw-Side').toggleClass('open');
     });
 });
