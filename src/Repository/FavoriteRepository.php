@@ -60,33 +60,6 @@ class FavoriteRepository extends ServiceEntityRepository
         }    
     }
 
-    
-    public function findOneOrCreateByUser(User $user, Post $post, bool $flush = true)
-    {
-        $qb = $this->createQueryBuilder('f');
-        $qb->where('f.user = :user')
-            ->andWhere('f.post = :post')
-            ->setParameters([
-                'user' => $user,
-                'post' => $post,
-            ])
-        ;
-
-        if (!$qb) {
-            $favorite = new Favorite();
-            $favorite->setUser($user);
-            $favorite->setPost($post);
-            $this->_em->persist($favorite);
-                if ($flush) {
-                    $this->_em->flush($favorite);
-                }
-            return $favorite;
-        } else {
-            return $qb;
-        }
-        
-    }
-
     /*
     public function findOneBySomeField($value): ?Favorite
     {

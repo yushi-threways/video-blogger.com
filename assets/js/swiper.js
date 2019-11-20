@@ -13,27 +13,33 @@ var mySwiper = new Swiper('.swiper-container', {
  });
 
  var mySwiper = new Swiper('.top-swiper-container', { 
-    slidesPerView: 3,
+    slidesPerView: 1,
     spaceBetween: 0,
-    loop: true,   
-    centeredSlides : false,
+    loop: true,
+    centeredSlides : true,
     speed: 600,
-    navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-    },
-    // autoplay: {
-    //     delay: 3000,
-    //     disableOnInteraction: true
-    // },
-    breakpoints: {
-        767: {
-          slidesPerView: 1,
-        }
+    autoplay: {
+        delay: 4000,
+        disableOnInteraction: true
     },
     pagination: {
         el: '.swiper-pagination',
-        type: 'bullets',
-        clickable: true,
+        type: 'bullets'
+    },
+    breakpoints: {
+        767: {
+            slidesPerView: 3,
+            loop: true,   
+            centeredSlides : true,
+            speed: 600,
+            autoplay: {
+                delay: 4000,
+                disableOnInteraction: true
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                type: 'bullets'
+            },
+        },
     },
  });
