@@ -57,10 +57,23 @@ class FavoriteRepository extends ServiceEntityRepository
         }    
     }
 
-    // /**
-    //  * @return Favorite[] Returns an array of Favorite objects
-    //  */
-    /*
+    public function findOneByFavorite(User $user, Post $post): ?Favorite
+    {
+        $query = $this->createQueryBuilder('f');
+        $query->where('f.post = :post')
+            ->andWhere('f.user = :user')
+            ->setParameters([
+                'user' => $user,
+                'post' => $post,
+            ])
+        ;
+
+        return $query->getQuery()->getOneOrNullResult();
+    }
+
+    /**
+    * @return Favorite[] Returns an array of Favorite objects
+    */
     public function findByExampleField($value)
     {
         return $this->createQueryBuilder('f')
@@ -72,17 +85,4 @@ class FavoriteRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?Favorite
-    {
-        return $this->createQueryBuilder('f')
-            ->andWhere('f.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }
