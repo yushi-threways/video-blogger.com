@@ -265,12 +265,6 @@ class Post
         return $this;
     }
 
-    public function hasFavorite(Post $post): bool
-    {
-        $favorites = $this->getFavorites();
-        return $favorites->contains($post);
-    }
-
     public function removeFavorite(Favorite $favorite): self
     {
         if ($this->favorites->contains($favorite)) {

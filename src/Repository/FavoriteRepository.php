@@ -60,42 +60,58 @@ class FavoriteRepository extends ServiceEntityRepository
         }    
     }
 
-    
-    public function findOneOrCreateByUser(User $user, Post $post, bool $flush = true)
+public function findOneOrCreateByUser(User $user, Post $post, bool $flush = true): ?Favorite
     {
-        $qb = $this->createQueryBuilder('f');
-        $qb->where('f.user = :user')
-            ->andWhere('f.post = :post')
+        $query = $this->createQueryBuilder('f');
+        $query->where('f.post = :post')
+            ->andWhere('f.user = :user')
             ->setParameters([
                 'user' => $user,
                 'post' => $post,
             ])
         ;
 
-        if (!$qb) {
+        $favorite = $query->getQuery()->getOneOrNullResult();
+        if(!$favorite) {
             $favorite = new Favorite();
             $favorite->setUser($user);
             $favorite->setPost($post);
             $this->_em->persist($favorite);
-                if ($flush) {
-                    $this->_em->flush($favorite);
-                }
+            if ($flush) {
+                $this->_em->flush($favorite);
+            }
             return $favorite;
         } else {
-            return $qb;
-        }
-        
+            return $favorite;
+        }    
     }
 
-    /*
-    public function findOneBySomeField($value): ?Favorite
+    public function findOneByFavorite(User $user, Post $post): ?Favorite
+    {
+        $query = $this->createQueryBuilder('f');
+        $query->where('f.post = :post')
+            ->andWhere('f.user = :user')
+            ->setParameters([
+                'user' => $user,
+                'post' => $post,
+            ])
+        ;
+
+        return $query->getQuery()->getOneOrNullResult();
+    }
+
+    /**
+    * @return Favorite[] Returns an array of Favorite objects
+    */
+    public function findByExampleField($value)
     {
         return $this->createQueryBuilder('f')
             ->andWhere('f.exampleField = :val')
             ->setParameter('val', $value)
+            ->orderBy('f.id', 'ASC')
+            ->setMaxResults(10)
             ->getQuery()
-            ->getOneOrNullResult()
+            ->getResult()
         ;
     }
-    */
 }

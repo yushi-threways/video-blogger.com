@@ -20,12 +20,14 @@ class Favorite
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="favorites", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="favorites")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id",onDelete="CASCADE")
      */
     private $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Post", inversedBy="favorites", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="App\Entity\Post", inversedBy="favorites")
+     * @ORM\JoinColumn(name="psot_id", referencedColumnName="id",onDelete="CASCADE")
      */
     private $post;
 

@@ -3,15 +3,15 @@ jQuery(function($){
         e.preventDefault();
         let $this = $(this);
 
-        if (($this).hasClass('btn-primary')) {
+        if (($this).hasClass('post-favorite')) {
             let url = $(this).data('add-url');
             $.ajax({
                 type: 'POST',
                 url: url
             }).then(function(res){
-                $this.text('favorited');
-                $this.removeClass('btn-primary');
-                $this.addClass('btn-danger');
+                // $this.text('favorited');
+                $this.removeClass('post-favorite');
+                $this.addClass('post-favorited');
                 console.log(res);
             });
         } else {
@@ -20,9 +20,8 @@ jQuery(function($){
                 type: 'POST',
                 url: url
             }).then(function(res){
-                $this.text('favorite');
-                $this.removeClass('btn-danger');
-                $this.addClass('btn-primary');
+                $this.addClass('post-favorite');
+                $this.removeClass('post-favorited');
                 console.log(res);
             });
         }
