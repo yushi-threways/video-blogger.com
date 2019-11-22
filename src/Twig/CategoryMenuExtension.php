@@ -6,7 +6,6 @@ use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 use App\Entity\Category;
 use App\Repository\CategoryRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Doctrine\ORM\EntityManagerInterface;
 
 class CategoryMenuExtension extends AbstractExtension

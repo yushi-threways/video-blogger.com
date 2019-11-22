@@ -138,3 +138,18 @@
         opacity: 0.8;
     }
 }
+
+.post-Item_Favorite {
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+
+.post-favorite {
+
+}
+.post-favorited {
+    i {
+        color: #dc143c;
+    }
+}

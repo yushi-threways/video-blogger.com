@@ -31,8 +31,7 @@ class FavoriteRepository extends ServiceEntityRepository
         return $this->findOneBy(['post' => $post]);
     }
 
-
-    public function findOneOrCreateByUser(User $user, Post $post, bool $flush = true): ?Favorite
+  public function findOneOrCreateByUser(User $user, Post $post, bool $flush = true): ?Favorite
     {
         $query = $this->createQueryBuilder('f');
         $query->where('f.post = :post')
@@ -42,11 +41,8 @@ class FavoriteRepository extends ServiceEntityRepository
                 'post' => $post,
             ])
         ;
-
-
         $favorite = $query->getQuery()->getOneOrNullResult();
         if(!$favorite) {
-
             $favorite = new Favorite();
             $favorite->setUser($user);
             $favorite->setPost($post);
@@ -57,18 +53,18 @@ class FavoriteRepository extends ServiceEntityRepository
             return $favorite;
         } else {
             return $favorite;
-        }    
+        }
     }
-
-    /*
-    public function findOneBySomeField($value): ?Favorite
+  
+    public function findOneByFavorite(User $user, Post $post): ?Favorite
     {
-        return $this->createQueryBuilder('f')
-            ->andWhere('f.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
+        $query = $this->createQueryBuilder('f');
+        $query->where('f.post = :post')
+            ->andWhere('f.user = :user')
+            ->setParameters([
+                'user' => $user,
+                'post' => $post,
+            ])
         ;
+        return $query->getQuery()->getOneOrNullResult();
     }
-    */
-}

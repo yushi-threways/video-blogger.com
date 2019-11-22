@@ -36,12 +36,15 @@ class FavoriteController extends AbstractController
      */
     public function removeFavorite(Request $request, Post $post, FavoriteRepository $favoriteRepositpry): Response
     {
-        
-        if ($this->isCsrfTokenValid('delete'.$favorite->getId(), $request->request->get('_token'))) {
+        $user = $this->getUser();
+
+        $favorite = $favoriteRepositpry->findOneByFavorite($user, $post);
+
+        // if ($this->isCsrfTokenValid('delete'.$favorite->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($favorite);
             $entityManager->flush();
-        } 
+        // } 
 
         return new JsonResponse('success', 200);
     }

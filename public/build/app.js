@@ -78,15 +78,15 @@ __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap
     e.preventDefault();
     var $this = $(this);
 
-    if ($this.hasClass('btn-primary')) {
+    if ($this.hasClass('post-favorite')) {
       var url = $(this).data('add-url');
       $.ajax({
         type: 'POST',
         url: url
       }).then(function (res) {
-        $this.text('favorited');
-        $this.removeClass('btn-primary');
-        $this.addClass('btn-danger');
+        // $this.text('favorited');
+        $this.removeClass('post-favorite');
+        $this.addClass('post-favorited');
         console.log(res);
       });
     } else {
@@ -96,9 +96,8 @@ __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap
         type: 'POST',
         url: _url
       }).then(function (res) {
-        $this.text('favorite');
-        $this.removeClass('btn-danger');
-        $this.addClass('btn-primary');
+        $this.addClass('post-favorite');
+        $this.removeClass('post-favorited');
         console.log(res);
       });
     }
