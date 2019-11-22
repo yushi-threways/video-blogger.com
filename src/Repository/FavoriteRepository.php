@@ -31,8 +31,7 @@ class FavoriteRepository extends ServiceEntityRepository
         return $this->findOneBy(['post' => $post]);
     }
 
-
-    public function findOneOrCreateByUser(User $user, Post $post, bool $flush = true): ?Favorite
+  public function findOneOrCreateByUser(User $user, Post $post, bool $flush = true): ?Favorite
     {
         $query = $this->createQueryBuilder('f');
         $query->where('f.post = :post')
@@ -42,35 +41,6 @@ class FavoriteRepository extends ServiceEntityRepository
                 'post' => $post,
             ])
         ;
-
-
-        $favorite = $query->getQuery()->getOneOrNullResult();
-        if(!$favorite) {
-
-            $favorite = new Favorite();
-            $favorite->setUser($user);
-            $favorite->setPost($post);
-            $this->_em->persist($favorite);
-            if ($flush) {
-                $this->_em->flush($favorite);
-            }
-            return $favorite;
-        } else {
-            return $favorite;
-        }    
-    }
-
-public function findOneOrCreateByUser(User $user, Post $post, bool $flush = true): ?Favorite
-    {
-        $query = $this->createQueryBuilder('f');
-        $query->where('f.post = :post')
-            ->andWhere('f.user = :user')
-            ->setParameters([
-                'user' => $user,
-                'post' => $post,
-            ])
-        ;
-
         $favorite = $query->getQuery()->getOneOrNullResult();
         if(!$favorite) {
             $favorite = new Favorite();
@@ -83,9 +53,9 @@ public function findOneOrCreateByUser(User $user, Post $post, bool $flush = true
             return $favorite;
         } else {
             return $favorite;
-        }    
+        }
     }
-
+  
     public function findOneByFavorite(User $user, Post $post): ?Favorite
     {
         $query = $this->createQueryBuilder('f');
@@ -96,22 +66,5 @@ public function findOneOrCreateByUser(User $user, Post $post, bool $flush = true
                 'post' => $post,
             ])
         ;
-
         return $query->getQuery()->getOneOrNullResult();
     }
-
-    /**
-    * @return Favorite[] Returns an array of Favorite objects
-    */
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('f')
-            ->andWhere('f.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('f.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-}
