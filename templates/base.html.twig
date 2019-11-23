@@ -37,7 +37,7 @@
     {% endblock %}
     </head>
     <body>
-        <div class="sw-Body">
+        <div id="sw-Body" class="sw-Body">
             {% block alert %}
                     <div class="sw-Alert">
                         {% for key, messages in app.session.flashBag.all %}
@@ -122,6 +122,15 @@
                             </div>
                         </aside>
                     </main>
+                    <footer>
+                        {% block footer %}
+                        <div class="sw-Footer">
+                            <div class="sw-Footer_Inner">
+                                <a href="#sw-Body" class="sw-Footer_TopLink"><span>▲</span><br>ページトップへ</a>
+                            </div>
+                        </div>
+                        {% endblock %}
+                    </footer>
                 {% endblock %}
             </div>
         </div>

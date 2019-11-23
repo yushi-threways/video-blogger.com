@@ -32,16 +32,15 @@
 
 }
 .sw-Header_Logo {
-
+    padding: 0 0 0 30px;
+    @include media-breakpoint-down(sm) {
+    }
 }
 .sw-Header_LogoMark {
     @include font-size(20px);
     color: #fff;
     letter-spacing: 2px;
     font-weight: bold;
-    @include media-breakpoint-down(sm) {
-        padding: 0 0 0 40px;
-    }
 }
 .sw-Header_MainNavItems {
     display: flex;

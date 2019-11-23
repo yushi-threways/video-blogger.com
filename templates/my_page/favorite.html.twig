@@ -1,0 +1,60 @@
+{% extends "/my_page/base.html.twig" %}
+
+{% block title %}マイページトップ｜オミパリマイページ{% endblock %}
+{% block description %}{% endblock %}
+
+
+{% block main %}
+<div class="sw-Contnet_Inner sw-Content_PaddingMypage">
+<section class="sw-Section">
+    <div class="mypage-Content">
+        <div class="mypage-Content_Inner">
+            <div class="mypage-Favorite">
+                <div class="post-Index">
+                    <div class="post-Index_Inner">
+                        <h2 class="post-Index_Title">お気に入り一覧</h2>
+                            <div class="post-List">
+                            {% for post in favorite_posts %}
+                            <div class="post-Item">
+                            <a class="post-Item_Link" href="{{ path('post_show', {'category': post.category.slug, 'slug': post.slug}) }}">
+                            <div class="post-Item_Image">
+                            <img src="http://i.ytimg.com/vi/{{ post.video }}/sddefault.jpg" alt="{{ post.title }}">
+                            </div>
+                            <div class="post-Item_Title">
+                                <p>{{ post.title }}</p>
+                            </div>
+                            </a>
+                            {% if post.category %}
+                            <div class="post-Item_Category">
+                                <a href="">{{ post.category }}</a>
+                            </div>
+                            {% endif %}
+                            <div class="post-Item_Tag">
+                                <div class="post-Item_TagIcon">
+                                    <i class="fas fa-tags"></i>
+                                </div>
+                                <ul class="post-Item_TagList">
+                                    <li class="post-Item_TagItem"><a href="">タグ</a></li>
+                                    <li class="post-Item_TagItem"><a href="">タグ</a></li>
+                                    <li class="post-Item_TagItem"><a href="">タグ</a></li>
+                                </ul>
+                            </div>
+                            </div>
+                            {% else %}
+                            <div>
+                                <p style="padding:20px 10px 0; font-size: 14px;">現在投稿はございません</p>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>            
+            </div>
+        </div>
+    </div>
+</section>
+</div>
+{% endblock %}
+
+{% block javascript %}
+    {{ parent() }}
+{% endblock %}

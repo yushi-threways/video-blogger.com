@@ -124,4 +124,14 @@ class User extends BaseUser
 
         return $this;
     }
+
+    /**
+     * @return Collection|Post[]
+     */
+    public function getFavoritePosts(): Collection
+    {
+        return $this->favorites->map(function (Favorite $favorite) {
+            return $favorite->getPost();
+        });
+    }
 }

@@ -4,6 +4,7 @@ namespace App\Controller\Mypage;
 
 use App\Entity\Favorite;
 use App\Form\FavoriteType;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,35 +18,15 @@ class FavoriteController extends AbstractController
     
 
     /**
-     * @Route("/new", name="mypage_favorite_new", methods={"GET","POST"})
+     * @Route("/", name="mypage_favorite", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function index(Request $request, UserRepository $userRepository): Response
     {
-        $favorite = new Favorite();
-        $form = $this->createForm(FavoriteType::class, $favorite);
-        $form->handleRequest($request);
+        $user = $this->getUser();
+        $favoritePosts = $user->getFavoritePosts();
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($favorite);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('favorite_index');
-        }
-
-        return $this->render('favorite/new.html.twig', [
-            'favorite' => $favorite,
-            'form' => $form->createView(),
-        ]);
-    }
-
-    /**
-     * @Route("/{id}", name="mypage_favorite_show", methods={"GET"})
-     */
-    public function show(Favorite $favorite): Response
-    {
-        return $this->render('favorite/show.html.twig', [
-            'favorite' => $favorite,
+        return $this->render('my_page/favorite.html.twig', [
+            'favorite_posts' => $favoritePosts,
         ]);
     }
 

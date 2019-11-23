@@ -1,72 +1,71 @@
-.menu-toggle {
-  display: none;
-}
 
 @include media-breakpoint-down(sm) {
-    .menu-toggle {
+    
+}
+
+  .menu-toggle {
+    display: block;
+    width: 24px;
+    height: 18px;
+    padding: 0;
+    cursor: pointer;
+    position: absolute;
+    top: 15px;
+    left: 10px;
+    z-index: 100;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    i {
+      cursor:pointer;
       display: block;
-      width: 24px;
-      height: 18px;
-      padding: 0;
-      cursor: pointer;
       position: absolute;
-      top: 15px;
-      left: 10px;
-      z-index: 100;
-      border: none;
-      outline: none;
-      background-color: transparent;
-      i {
-        cursor:pointer;
-        display: block;
-        position: absolute;
-        left: 0;
-        right: 0;
-        height: 2px;
-        width: 21px;
-        margin: 0 auto;
-        background-color: #fff;
-        -webkit-transition: .35s ease-in-out;
-        -moz-transition: .35s ease-in-out;
-        transition: .35s ease-in-out;
-        &:nth-child(1) {
-          top: 0px;
-        }
-        &:nth-child(2) {
-          top: 7px;
-        }
-        &:nth-child(3) {
-          top: 14px;
-        }
+      left: 0;
+      right: 0;
+      height: 2px;
+      width: 21px;
+      margin: 0 auto;
+      background-color: #fff;
+      -webkit-transition: .35s ease-in-out;
+      -moz-transition: .35s ease-in-out;
+      transition: .35s ease-in-out;
+      &:nth-child(1) {
+        top: 0px;
+      }
+      &:nth-child(2) {
+        top: 7px;
+      }
+      &:nth-child(3) {
+        top: 14px;
       }
     }
-    .open-btn {
-        .menu-toggle {
-            cursor:pointer;
-            background-color: transparent;
-            position: fixed;
-            z-index: 10;
-            i {
-              background-color: #fff;
+  }
+  .open-btn {
+      .menu-toggle {
+          cursor:pointer;
+          background-color: transparent;
+          position: fixed;
+          z-index: 10;
+          i {
+            background-color: #fff;
+          }
+          i:nth-child(1) {
+            top:  8px;
+            -webkit-transform: rotate(315deg);
+            -moz-transform: rotate(315deg);
+            transform: rotate(315deg);
+          }
+          i:nth-child(2) {
+            width: 0;
+            left: 50%;
+          }
+          i:nth-child(3) {
+            top: 8px;
+            -webkit-transform: rotate(-315deg);
+            -moz-transform: rotate(-315deg);
+            transform: rotate(-315deg);
             }
-            i:nth-child(1) {
-              top:  8px;
-              -webkit-transform: rotate(315deg);
-              -moz-transform: rotate(315deg);
-              transform: rotate(315deg);
-            }
-            i:nth-child(2) {
-              width: 0;
-              left: 50%;
-            }
-            i:nth-child(3) {
-              top: 8px;
-              -webkit-transform: rotate(-315deg);
-              -moz-transform: rotate(-315deg);
-              transform: rotate(-315deg);
-              }
-            }
-    }
+          }
   }
 
   .menu-opend {
