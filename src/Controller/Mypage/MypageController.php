@@ -25,17 +25,8 @@ class MypageController extends AbstractController
         /** @var User $user */
         $user = $this->getUser();
 
-        $post = $postRepository->findOneBy(['id' => '11']);
-        $favorite = $favoriteRepository->findOneOrCreateByUser($user, $post);
-
-        // if (!is_object($user) || !$user instanceof UserInterface) {
-        //     throw new AccessDeniedException('ログインしてください。');
-        // }
-
         return $this->render('my_page/index.html.twig', [
             'user' => $user,
-            'favorite' => $favorite,
-            'post' => $post,
         ]);
     }
 }

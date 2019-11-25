@@ -6,7 +6,7 @@
             <!-- Additional required wrapper -->
             <div class="swiper-wrapper">
                <!-- Slides -->
-               {% for post in posts %}
+               {% for post in favorite_posts %}
                <div class="movie-Item swiper-slide">
                <a class="movie-Item_Link" href="{{ path('post_show', {'category': post.category.slug, 'slug': post.slug}) }}">
                <div class="movie-Item_Image">
@@ -31,15 +31,6 @@
                      <li class="movie-Item_TagItem"><a href="">タグ</a></li>
                   </ul>
                </div>
-               {% if is_granted('ROLE_USER') %}
-               {% set isFavorite = is_favorite(post) %}
-               <button type="button" class="post-Item_Favorite {{ isFavorite? 'post-favorited': 'post-favorite' }}"
-                  data-add-url="{{ path("add_post_favorite", {id: post.id}) }}"
-                  data-remove-url="{{ path("remove_post_favorite", {id: post.id})}}"
-               >{{ isFavorite? '<i class="fas fa-bookmark"></i>':'<i class="fas fa-bookmark"></i>' }}</button>
-               {% else %}
-
-               {% endif %}
             </div>
             {% else %}
             <div>

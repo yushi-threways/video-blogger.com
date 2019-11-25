@@ -37,7 +37,7 @@
     {% endblock %}
     </head>
     <body>
-        <div class="sw-Body">
+        <div id="sw-Body" class="sw-Body">
             {% block alert %}
                     <div class="sw-Alert">
                         {% for key, messages in app.session.flashBag.all %}
@@ -115,6 +115,11 @@
                                                     <li class="sw-Side_ItemList"><a href="{{ path('site_static', {page: "qa"}) }}">プライバシーポリシー</a></li> 
                                                     <li class="sw-Side_ItemList"><a href="{{ path('site_static', {page: "qa"}) }}">ヘルプ</a></li>
                                                 </ul>
+                                                {% if is_granted('ROLE_USER') %}
+                                                <ul class="sw-Side_ItemLists">
+                                                    <li class="sw-Side_ItemList"><a href="{{ path('fos_user_security_logout') }}">ログアウト</a></li>
+                                                </ul>
+                                                {% endif %}
                                             </li>
                                         </ul>                  
                                     </div>
@@ -122,6 +127,15 @@
                             </div>
                         </aside>
                     </main>
+                    <footer>
+                        {% block footer %}
+                        <div class="sw-Footer">
+                            <div class="sw-Footer_Inner">
+                                <a href="#sw-Body" class="sw-Footer_TopLink"><span>▲</span><br>ページトップへ</a>
+                            </div>
+                        </div>
+                        {% endblock %}
+                    </footer>
                 {% endblock %}
             </div>
         </div>

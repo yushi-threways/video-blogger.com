@@ -24,3 +24,10 @@
     -o-transition: all $time ease;
     transition: all $time ease;
   }
+
+  @mixin rotate($transform) {
+    -webkit-transform: rotate($transform);
+    -moz-transform: rotate($transform);
+    -ms-transform: rotate($transform);
+    transform: rotate($transform);
+  }

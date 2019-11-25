@@ -1,31 +1,33 @@
 .sw-Side {
     transition-duration: 0.2s;
+    max-width: 100%;
+    width: 300px;
+    height: 100vh;
+    padding: 20px 0 0;
+    // background: rgba(255, 255, 255, 0.1);
+    background-color: black;
+    margin: 0;
+    -webkit-transform: translateX(-100%);
+    -moz-transform: translateX(-100%);
+    -ms-transform: translateX(-100%);
+    -o-transform: translateX(-100%);
+    transform: translateX(-100%);
+    position: fixed;
+    z-index: 10;
+    top: 45px;
     @include media-breakpoint-down(sm) {
         width: $size__site-side;
-        max-width: 100%;
-        height: 100vh;
-        padding: 20px 0 0;
-        // background: rgba(255, 255, 255, 0.1);
-        background-color: black;
-        margin: 0;
-        -webkit-transform: translateX(-100%);
-        -moz-transform: translateX(-100%);
-        -ms-transform: translateX(-100%);
-        -o-transform: translateX(-100%);
-        transform: translateX(-100%);
-        position: fixed;
-        z-index: 10;
-        top: 45px;
     }
 }
 aside.sw-Side.open {
+    width: 300px;
+    -webkit-transform: translateX(0);
+    -moz-transform: translateX(0);
+    -ms-transform: translateX(0);
+    -o-transform: translateX(0);
+    transform: translateX(0);
     @include media-breakpoint-down(sm) {
         width: 100%;
-        -webkit-transform: translateX(0);
-        -moz-transform: translateX(0);
-        -ms-transform: translateX(0);
-        -o-transform: translateX(0);
-        transform: translateX(0);
     }
 }
 .sw-Side_Inner {
@@ -91,8 +93,9 @@ aside.sw-Side.open {
     }
 }
 .sw-Side_ItemList--arrow {
+    background: url(../../../public/images/right-arrow@2x.png) no-repeat center right 30px;
+    background-size: 10px;
     @include media-breakpoint-down(sm) {
-        background: url(../../../public/images/right-arrow@2x.png) no-repeat center right 30px;
-        background-size: 10px;
+        
     }
 }
