@@ -43,7 +43,7 @@ class FavoriteRepository extends ServiceEntityRepository
         ;
 
         $favorite = $query->getQuery()->getOneOrNullResult();
-        if(!$favorite) {
+        if (!$favorite) {
             $favorite = new Favorite();
             $favorite->setUser($user);
             $favorite->setPost($post);
@@ -69,3 +69,4 @@ class FavoriteRepository extends ServiceEntityRepository
         ;
         return $query->getQuery()->getOneOrNullResult();
     }
+}
