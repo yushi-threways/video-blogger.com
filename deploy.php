@@ -20,12 +20,12 @@ add('shared_dirs', []);
 add('writable_dirs', []);
 set('allow_anonymous_stats', false);
 
-// Hosts
+set('http_user', 'lbqhvbsc');
 
+// Hosts
 host('fgc.mixh.jp')
     ->user('lbqhvbsc')
     ->port(22)
-    ->http_user('lbqhvbsc')
     ->stage('staging')
     ->set('branch', 'master')
     ->set('composer_options', '{{composer_action}} --verbose --prefer-dist --no-progress --no-interaction --optimize-autoloader')
