@@ -4,10 +4,10 @@ namespace Deployer;
 require 'recipe/symfony4.php';
 
 // Project name
-set('application', 'vlogger');
+set('application', 'video-blogger.com');
 
 // Project repository
-set('repository', 'git@github.com:fgc0415/vlogger.git');
+set('repository', 'git@github.com:fgc0415/video-blogger.com');
 
 // [Optional] Allocate tty for git clone. Default value is false.
 set('git_tty', true);
@@ -22,7 +22,7 @@ set('allow_anonymous_stats', false);
 
 // Hosts
 
-host('vlogger.fgc.mixh.jp')
+host('video-blogger.com')
     ->user('lbqhvbsc')
     ->hostname('fgc.mixh.jp')
     ->port(22)
