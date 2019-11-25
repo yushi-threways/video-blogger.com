@@ -1,23 +1,23 @@
 <?php
 namespace Deployer;
 
-require 'recipe/symfony.php';
+require 'recipe/symfony4.php';
 
 // Project name
 set('application', 'video-blogger.com');
 
 // Project repository
-set('repository', 'git@github.com:fgc0415/video-blogger.com.git');
+set('repository', 'git@github.com:fgc0415/video-blogger.com');
 
 // [Optional] Allocate tty for git clone. Default value is false.
-set('git_tty', true); 
+set('git_tty', true);
 
-// Shared files/dirs between deploys 
-add('shared_files', []);
-add('shared_dirs', []);
+// Shared files/dirs between deploys
+// add('shared_files', []);
+// add('shared_dirs', []);
 
-// Writable dirs by web server 
-add('writable_dirs', []);
+// Writable dirs by web server
+// add('writable_dirs', []);
 set('allow_anonymous_stats', false);
 
 // Hosts
@@ -30,7 +30,12 @@ host('fgc.mixh.jp')
     ->set('composer_options', '{{composer_action}} --verbose --prefer-dist --no-progress --no-interaction --optimize-autoloader')
     ->set('deploy_path', '~/public_html/{{application}}')
     ->add('shared_files', ['.env.local', 'public/.htaccess']);
+
 // Tasks
+task('pwd', function () {
+    $result = run('pwd');
+    writeln("Current dir: $result");
+});
 
 task('build:assets', function(){
     runLocally('yarn build');
@@ -48,4 +53,3 @@ after('deploy:failed', 'deploy:unlock');
 // Migrate database before symlink new release.
 
 before('deploy:symlink', 'database:migrate');
-
