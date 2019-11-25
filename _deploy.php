@@ -9,6 +9,9 @@ set('application', 'video-blogger.com');
 // Project repository
 set('repository', 'git@github.com:fgc0415/video-blogger.com');
 
+set('env', [
+    'APP_ENV' => 'prod',
+]);
 // [Optional] Allocate tty for git clone. Default value is false.
 set('git_tty', true);
 
