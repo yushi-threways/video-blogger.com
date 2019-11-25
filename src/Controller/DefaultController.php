@@ -15,7 +15,7 @@ class DefaultController extends AbstractController
     public function index(PostRepository $postRepository, CategoryRepository $categoryRepository)
     {
 
-        $posts = $postRepository->getNewPosts(10);
+        $posts = $postRepository->getNewPosts(6);
         $categories = $categoryRepository->getCategoriesPosts(20);
         
         return $this->render('default/index.html.twig', [

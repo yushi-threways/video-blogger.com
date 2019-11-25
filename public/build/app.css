@@ -7794,9 +7794,12 @@ body {
   padding: 0;
   list-style-type: none; }
 
-@media (max-width: 767.98px) {
-  .top-Movie_Item {
-    max-width: 100%; } }
+.top-Movie_Item {
+  max-width: 33.3%; }
+  @media (max-width: 767.98px) {
+    .top-Movie_Item {
+      max-width: 100%;
+      width: 100%; } }
 
 .top-Movie_Item-image {
   margin-bottom: 8px;
@@ -7822,6 +7825,16 @@ body {
   display: block; }
   .movie-Item_Link:hover {
     opacity: 0.8; }
+
+.top-Movie_Item-link {
+  display: block; }
+
+.top-Movie_Area-inner {
+  position: relative;
+  width: 100%;
+  margin: 0 0 24px;
+  padding: 0 0 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
 
 html {
   position: relative;
