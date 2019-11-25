@@ -22,9 +22,8 @@ set('allow_anonymous_stats', false);
 
 // Hosts
 
-host('video-blogger.com')
+host('fgc.mixh.jp')
     ->user('lbqhvbsc')
-    ->hostname('fgc.mixh.jp')
     ->port(22)
     ->stage('staging')
     ->set('branch', 'master')
