@@ -114,7 +114,12 @@
                                              <li class="sw-Side_Item">
                                                {{ categoryLists()|raw }}
                                             </li>
-                                        </ul>                  
+                                        </ul>
+                                        {% if is_granted('ROLE_USER') %}
+                                            <ul class="sw-Side_ItemLists">
+                                                <li class="sw-Side_ItemList"><a href="{{ path('fos_user_security_logout') }}">ログアウト</a></li>
+                                            </ul>
+                                        {% endif %}                
                                     </div>
                                 {% endblock %}
                             </div>

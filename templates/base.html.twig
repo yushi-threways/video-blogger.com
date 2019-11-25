@@ -115,6 +115,11 @@
                                                     <li class="sw-Side_ItemList"><a href="{{ path('site_static', {page: "qa"}) }}">プライバシーポリシー</a></li> 
                                                     <li class="sw-Side_ItemList"><a href="{{ path('site_static', {page: "qa"}) }}">ヘルプ</a></li>
                                                 </ul>
+                                                {% if is_granted('ROLE_USER') %}
+                                                <ul class="sw-Side_ItemLists">
+                                                    <li class="sw-Side_ItemList"><a href="{{ path('fos_user_security_logout') }}">ログアウト</a></li>
+                                                </ul>
+                                                {% endif %}
                                             </li>
                                         </ul>                  
                                     </div>

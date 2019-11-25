@@ -51,7 +51,7 @@ class ChangePasswordController extends BaseController
      * @param Request $request
      *
      * @return Response
-     * @Route("mypage/profile/change-password", name="mypage_change_password")
+     * @Route("profile/change-password", name="mypage_change_password")
      */
     public function changePasswordAction(Request $request)
     {
