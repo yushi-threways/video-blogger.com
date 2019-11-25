@@ -25,6 +25,7 @@ set('allow_anonymous_stats', false);
 host('fgc.mixh.jp')
     ->user('lbqhvbsc')
     ->port(22)
+    ->http_user('lbqhvbsc')
     ->stage('staging')
     ->set('branch', 'master')
     ->set('composer_options', '{{composer_action}} --verbose --prefer-dist --no-progress --no-interaction --optimize-autoloader')
