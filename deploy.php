@@ -17,10 +17,14 @@ add('shared_files', []);
 add('shared_dirs', []);
 
 // Writable dirs by web server 
-add('writable_dirs', []);
+add('writable_dirs', [
+    'current'
+]);
 set('allow_anonymous_stats', false);
 
 set('http_user', 'lbqhvbsc');
+
+set('writable_mode', 'chmod');
 
 // Hosts
 host('fgc.mixh.jp')
