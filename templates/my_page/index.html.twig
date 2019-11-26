@@ -1,8 +1,11 @@
-{% extends "/my_page/base.html.twig" %}
+{% extends "my_page/base.html.twig" %}
+
 
 {% block title %}マイページトップ｜オミパリマイページ{% endblock %}
-{% block description %}{% endblock %}
 
+{% block header %}
+    {{ parent() }}
+{% endblock %}
 
 {% block main %}
 <div class="sw-Contnet_Inner sw-Content_PaddingMypage">
@@ -10,7 +13,7 @@
     <div class="mypage-Content">
         <div class="mypage-Content_Inner">
             <div class="">
-            {# <div class="">
+            <div class="">
                 <ul class="nav nav-tabs">
                     <li class="nav-item">
                         <a href="#applied" class="nav-link active" data-toggle="tab">あ</a>
@@ -30,7 +33,7 @@
                 <div id="past_event" class="tab-pane">
                 </div>
                 </div>    
-            </div> #}
+            </div>
         </div>
     </div>
 </section>
