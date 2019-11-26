@@ -10,15 +10,14 @@ set('application', 'video-blogger.com');
 set('repository', 'git@github.com:fgc0415/video-blogger.com.git');
 
 // [Optional] Allocate tty for git clone. Default value is false.
-set('git_tty', true); 
+set('git_tty', true);
 
-// Shared files/dirs between deploys 
+// Shared files/dirs between deploys
 add('shared_files', []);
 add('shared_dirs', []);
 
-// Writable dirs by web server 
+// Writable dirs by web server
 add('writable_dirs', [
-    'current'
 ]);
 set('allow_anonymous_stats', false);
 
@@ -34,10 +33,11 @@ host('fgc.mixh.jp')
     ->set('branch', 'master')
     ->set('composer_options', '{{composer_action}} --verbose --prefer-dist --no-progress --no-interaction --optimize-autoloader')
     ->set('deploy_path', '~/public_html/{{application}}')
-    ->add('shared_files', ['.env.local', 'public/.htaccess']);
+    // ->add('shared_files', ['.env.local', 'public/.htaccess']);
+    ->add('shared_files', ['.env.local']);
 // Tasks
 
-task('build:assets', function(){
+task('build:assets', function () {
     runLocally('yarn build');
     upload('public/build/', '{{release_path}}/public');
 });
@@ -53,4 +53,3 @@ after('deploy:failed', 'deploy:unlock');
 // Migrate database before symlink new release.
 
 before('deploy:symlink', 'database:migrate');
-
