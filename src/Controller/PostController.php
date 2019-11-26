@@ -28,11 +28,9 @@ class PostController extends AbstractController
         $user = $this->getUser();
 
         $posts = $postRepository->getNewPosts();
-        $favorite =$favoriteRepository->findBy(['user' => $user]);
     
         return $this->render('post/index.html.twig', [
             'posts' => $posts,
-            'favorite' => $favorite,
         ]);
     }
 
