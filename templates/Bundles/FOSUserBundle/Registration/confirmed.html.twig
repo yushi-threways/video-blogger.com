@@ -5,7 +5,6 @@
 {% block fos_user_content %}
 <div class="registration-Area">
     <p>{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</p>
-    <a href="{{ path('default_index') }}">イベントを探す</a>
+    <a href="{{ path("default_index") }}">トップへ戻る</a>
 </div>
-   
 {% endblock fos_user_content %}
