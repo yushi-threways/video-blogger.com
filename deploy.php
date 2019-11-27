@@ -29,14 +29,24 @@ set('writable_mode', 'chmod');
 host('fgc.mixh.jp')
     ->user('lbqhvbsc')
     ->port(22)
+//    ->forwardAgent() // You can use identity key, ssh config, or username/password to auth on the server.
+//    ->identityFile(getenv('STAGING_SSH_IDENTIFIER_KEY'))
     ->stage('staging')
+    ->set('branch', 'master')
+    ->set('deploy_path', '~/public_html/vlogger/{{application}}') // Define the base path to deploy your project to.
+    ->set('composer_options', '{{composer_action}} --verbose --prefer-dist --no-progress --no-interaction --optimize-autoloader')
+    ->add('shared_files', ['.env.local', 'public/.htaccess']);
+
+host('video-blogger.com')
+    ->user('lbqhvbsc')
+    ->port(22)
+    ->stage('prod')
     ->set('branch', 'master')
     ->set('composer_options', '{{composer_action}} --verbose --prefer-dist --no-progress --no-interaction --optimize-autoloader')
     ->set('deploy_path', '~/public_html/{{application}}')
-    // ->add('shared_files', ['.env.local', 'public/.htaccess']);
-    ->add('shared_files', ['.env.local']);
-// Tasks
+    ->add('shared_files', ['.env.local', 'public/.htaccess']);
 
+// Tasks
 task('build:assets', function () {
     runLocally('yarn build');
     upload('public/build/', '{{release_path}}/public');
