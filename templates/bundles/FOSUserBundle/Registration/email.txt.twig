@@ -5,6 +5,9 @@
 {%- endautoescape -%}
 {% endblock %}
 
+{% block from %}noreply@video-blogger.com{% endblock %}
+{% block to %}{{ user.email }}{% endblock %}
+
 {% block body_text %}
 {% autoescape false %}
 {{ 'registration.email.message'|trans({'%username%': user.username, '%confirmationUrl%': confirmationUrl}) }}
