@@ -7,13 +7,16 @@
  {% endblock %}
 
 {% block content %}
-    <h1>Post index</h1>
-
-    <table class="table">
+    <div class="sw-Admin_ContentHeader">
+        <h1 class="sw-Amin_IndexTitle">投稿一覧</h1>
+        <a href="{{ path('admin_post_new') }}">新規投稿を作成</a>
+    </div>
+    <table class="table sw-Amin_IndexTable">
         <thead>
             <tr>
+                <th>サムネイル</th>
                 <th>タイトル</th>
-                <th>ビデオID,スラッグ</th>
+                <th>ビデオID</th>
                 <th>カテゴリー</th>
                 <th>公開日</th>
                 <th>actions</th>
@@ -22,13 +25,14 @@
         <tbody>
         {% for post in posts %}
             <tr>
+                <td><img src="http://i.ytimg.com/vi/{{ post.video }}/sddefault.jpg" alt="{{ post.title }}"></td>
                 <td>{{ post.title }}</td>
                 <td>{{ post.slug }}</td>
                 <td>{{ post.category }}</td>
-                <td>{{ post.publishedAt ? post.publishedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ post.publishedAt ? post.publishedAt|date('Y-m-d H:i') : '' }}</td>
                 <td>
-                    <a href="{{ path('admin_post_show', {'id': post.id}) }}">show</a>
-                    <a href="{{ path('admin_post_edit', {'id': post.id}) }}">edit</a>
+                    <a class="btn btn-sm btn-primary mb-1" href="{{ path('admin_post_show', {'id': post.id}) }}">詳細</a>
+                    <a class="btn btn-sm btn-info mb-1" href="{{ path('admin_post_edit', {'id': post.id}) }}">編集</a>
                 </td>
             </tr>
         {% else %}
@@ -39,5 +43,4 @@
         </tbody>
     </table>
 
-    <a href="{{ path('admin_post_new') }}">Create new</a>
 {% endblock %}
