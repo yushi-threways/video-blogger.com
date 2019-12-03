@@ -10,9 +10,11 @@
  {% endblock %}
 
 {% block content %}
+    <div class="sw-Admin_ContentHeader">
     <h1>ユーザー一覧</h1>
+    </div>
 
-    <table class="table">
+    <table class="table sw-Admin_IndexTable">
         <thead>
             <tr>
                 <th>Id</th>
@@ -20,9 +22,7 @@
                 <th>Email</th>
                 <th>Enabled</th>
                 <th>LastLogin</th>
-                <th>Roles</th>
                 <th>CreatedAt</th>
-                <th>actions</th>
             </tr>
         </thead>
         <tbody>
@@ -32,11 +32,10 @@
                 <td>{{ user.username }}</td>
                 <td>{{ user.email }}</td>
                 <td>{{ user.enabled ? 'Yes' : 'No' }}</td>
-                <td>{{ user.lastLogin ? user.lastLogin|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ user.roles ? user.roles|join(', ') : '' }}</td>
-                <td>{{ user.createdAt ? user.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ user.lastLogin ? user.lastLogin|date('Y-m-d') : '' }}</td>
+                <td>{{ user.createdAt ? user.createdAt|date('Y-m-d') : '' }}</td>
                 <td>
-                    <a href="{{ path('admin_user_show', {'id': user.id}) }}">show</a>
+                    <a class="btn btn-sm btn-primary" href="{{ path('admin_user_show', {'id': user.id}) }}">show</a>
                 </td>
             </tr>
         {% else %}

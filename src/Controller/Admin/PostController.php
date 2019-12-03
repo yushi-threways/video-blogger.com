@@ -72,14 +72,13 @@ class PostController extends AbstractController
 
                     $entityManager = $this->getDoctrine()->getManager();
                     $entityManager->persist($post);
-                    $entityManager->flush();   
+                    $entityManager->flush();
                 }
 
                 $this->addFlash('success', '投稿に成功しました');
 
                 return $this->redirectToRoute('admin_post_index');
             } else {
-                
                 $this->addFlash('warning', '投稿に失敗しました。');
                 return $this->redirectToRoute('admin_post_index');
             }
@@ -132,6 +131,6 @@ class PostController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('post_index');
+        return $this->redirectToRoute('admin_post_index');
     }
 }

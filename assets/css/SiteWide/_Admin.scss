@@ -1,0 +1,36 @@
+
+.sw-Admin_ContentHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    h1 {
+        @include font-size(18px);
+    }
+    a {
+        @include font-size(13px);
+    }
+}
+.sw-Amin_IndexTable {
+    thead {
+        tr {
+            th {
+                @include font-size(14px);
+            }
+        }
+    }
+    tbody {
+        tr {
+            th {
+
+            }
+            td {
+                @include font-size(14px);
+                img {
+                    max-width: 100px;
+                    margin: 0 auto;
+                    vertical-align: bottom;
+                }
+            }
+        }
+    }
+}
