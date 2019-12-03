@@ -1,38 +1,35 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/base.html.twig' %}
 
-{% block title %}Category{% endblock %}
+{% block title %}カテゴリ詳細 | Vlogger管理{% endblock %}
 
-{% block body %}
-    <h1>Category</h1>
+{% block breadcrumbs %}
+    <li class="breadcrumb-item active">カテゴリ詳細</li>
+ {% endblock %}
 
-    <table class="table">
+{% block content %}
+    <div class="sw-Admin_ContentHeader">
+    <h1>カテゴリ詳細</h1>
+    <a href="{{ path('admin_category_edit', {'id': category.id}) }}">編集</a>
+    </div>
+
+    <table class="table sw-Admin_IndexTable">
         <tbody>
             <tr>
                 <th>Id</th>
                 <td>{{ category.id }}</td>
             </tr>
             <tr>
-                <th>Title</th>
+                <th>タイトル</th>
                 <td>{{ category.title }}</td>
             </tr>
             <tr>
-                <th>Lft</th>
-                <td>{{ category.lft }}</td>
-            </tr>
-            <tr>
-                <th>Lvl</th>
-                <td>{{ category.lvl }}</td>
-            </tr>
-            <tr>
-                <th>Rgt</th>
-                <td>{{ category.rgt }}</td>
+                <th>スラッグ</th>
+                <td>{{ category.slug }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('category_index') }}">back to list</a>
+    <a href="{{ path('admin_category_index') }}">back to list</a>
 
-    <a href="{{ path('category_edit', {'id': category.id}) }}">edit</a>
-
-    {{ include('category/_delete_form.html.twig') }}
+    {{ include('admin/category/_delete_form.html.twig') }}
 {% endblock %}

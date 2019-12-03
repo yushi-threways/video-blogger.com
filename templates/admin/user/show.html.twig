@@ -1,23 +1,29 @@
 {% extends 'admin/base.html.twig' %}
 
-{% block title %}ユーザー詳細 | {{ admin_name }}{% endblock %}
-
+{% block title %}ユーザー詳細 | Vlogger管理{% endblock %}
 
 {% block breadcrumbs %}
     <li class="breadcrumb-item active">ユーザー詳細</li>
  {% endblock %}
 
 {% block content %}
-    <h1>ユーザー詳細</h1>
+    <div class="sw-Admin_ContentHeader">
+        <h1 class="sw-Amin_IndexTitle">ユーザー詳細</h1>
+        <a href="{{ path('admin_user_edit', {'id': user.id}) }}">編集</a>
+    </div>
 
     <table class="table">
         <tbody>
             <tr>
-                <th>Username</th>
+                <th>Id</th>
+                <td>{{ user.id }}</td>
+            </tr>
+            <tr>
+                <th>ユーザー名</th>
                 <td>{{ user.username }}</td>
             </tr>
             <tr>
-                <th>Email</th>
+                <th>メールアドレス</th>
                 <td>{{ user.email }}</td>
             </tr>
             <tr>
@@ -25,28 +31,8 @@
                 <td>{{ user.enabled ? 'Yes' : 'No' }}</td>
             </tr>
             <tr>
-                <th>Salt</th>
-                <td>{{ user.salt }}</td>
-            </tr>
-            <tr>
                 <th>LastLogin</th>
                 <td>{{ user.lastLogin ? user.lastLogin|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Roles</th>
-                <td>{{ user.roles ? user.roles|join(', ') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Id</th>
-                <td>{{ user.id }}</td>
-            </tr>
-            <tr>
-                <th>CreatedAt</th>
-                <td>{{ user.createdAt ? user.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>UpdatedAt</th>
-                <td>{{ user.updatedAt ? user.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
         </tbody>
     </table>

@@ -1,42 +1,48 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/base.html.twig' %}
 
-{% block title %}Post{% endblock %}
+{% block title %}投稿詳細 | Vlogger管理{% endblock %}
 
-{% block body %}
-    <h1>Post</h1>
+{% block breadcrumbs %}
+    <li class="breadcrumb-item active">投稿詳細</li>
+{% endblock %}
 
-    <table class="table">
+{% block content %}
+    <div class="sw-Admin_ContentHeader">
+        <h1>投稿詳細</h1>
+        <a href="{{ path('admin_post_edit', {'id': post.id}) }}">edit</a>
+    </div>
+
+
+    <table class="table sw-Amin_IndexTable">
         <tbody>
             <tr>
                 <th>Id</th>
                 <td>{{ post.id }}</td>
             </tr>
             <tr>
-                <th>Title</th>
+                <th>タイトル</th>
                 <td>{{ post.title }}</td>
             </tr>
             <tr>
-                <th>Slug</th>
+                <th>スラッグ</th>
                 <td>{{ post.slug }}</td>
             </tr>
             <tr>
-                <th>Summary</th>
+                <th>概要</th>
                 <td>{{ post.summary }}</td>
             </tr>
             <tr>
-                <th>Content</th>
+                <th>内容</th>
                 <td>{{ post.content }}</td>
             </tr>
             <tr>
-                <th>PublishedAt</th>
+                <th>公開日</th>
                 <td>{{ post.publishedAt ? post.publishedAt|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('post_index') }}">back to list</a>
+    <a href="{{ path('admin_post_index') }}">back to list</a>
 
-    <a href="{{ path('post_edit', {'id': post.id}) }}">edit</a>
-
-    {{ include('post/_delete_form.html.twig') }}
+    {{ include('admin/post/_delete_form.html.twig') }}
 {% endblock %}
