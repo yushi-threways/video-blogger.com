@@ -1,10 +1,18 @@
 {% extends "base.html.twig" %}
 
-{% block head %}
-   <title>vlogトップ</title>
-   <meta name="description" content="">
-   <link rel="canonical" href="">
-{% endblock %}
+   {% block head %}
+    <title>{{ post.title }}|video-blogger</title>
+    <meta name="description" content="">
+    {% endblock %}
+
+    {% block og %}
+    <meta property="og:site_name" content="video-blogger">
+    <meta property="og:title" content="{{ post.title }}|video-blooder">
+    <meta property="og:description" content="YouTubeに上がっているvlogger(video-blogger)の動画をカテゴライズしてまとめたサイトになります。">
+    <meta property="og:type" content="blog">
+    <meta property="og:url" content="https://video-blogger.com">
+    <meta property="og:image" content="">
+    {% endblock %}
 
 {% block stylesheet %}
    {{ parent() }}

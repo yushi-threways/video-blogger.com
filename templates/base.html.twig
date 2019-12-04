@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" prefix="og: http://ogp.me/ns#">
     <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,18 +7,17 @@
     <meta name="format-detection" content="telephone=no">
 
     {% block head %}
-    <title></title>
-    <meta name="description" content="">
-    <link rel="canonical" href="">
+    <title>video-bloggerトップ</title>
+    <meta name="description" content="YouTubeに上がっているvlog(video-blogger)の動画をカテゴライズしてまとめたサイトになります。">
     {% endblock %}
 
     {% block og %}
-    <meta property="og:site_name" content="Vlogger">
-    <meta property="og:title" content="">
-    <meta property="og:description" content="">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="サイトのURL貼る">
-    <meta property="og:image" content="ogpのURL貼る">
+    <meta property="og:site_name" content="video-blogger">
+    <meta property="og:title" content="video-blooderトップ">
+    <meta property="og:description" content="YouTubeに上がっているvlogger(video-blogger)の動画をカテゴライズしてまとめたサイトになります。">
+    <meta property="og:type" content="blog">
+    <meta property="og:url" content="https://video-blogger.com">
+    <meta property="og:image" content="">
     {% endblock %}
     
     {% block twitter %}
@@ -38,20 +37,6 @@
     </head>
     <body>
         <div id="sw-Body" class="sw-Body">
-            {% block alert %}
-                    <div class="sw-Alert">
-                        {% for key, messages in app.session.flashBag.all %}
-                            {% for message in messages %}
-                                <div class="alert alert-{{ key }}">
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                    {{ message }}
-                                </div>
-                            {% endfor %}
-                        {% endfor %}
-                    </div>
-            {% endblock %}
 
             <div class="sw-Body_Inner">
 
