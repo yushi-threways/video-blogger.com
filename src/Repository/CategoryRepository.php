@@ -8,7 +8,6 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
 use Gedmo\Tree\Entity\Repository\NestedTreeRepository;
 use LogicException;
 
-
 /**
  * @method Admin|null find($id, $lockMode = null, $lockVersion = null)
  * @method Admin|null findOneBy(array $criteria, array $orderBy = null)
@@ -36,7 +35,12 @@ class CategoryRepository extends NestedTreeRepository implements ServiceEntityRe
     public function getCategoriesPosts($limit = null)
     {
         $qb = $this->createQueryBuilder("c");
-        $qb->setMaxResults($limit)
+        $qb->leftJoin("c.posts", "cp")
+            ->addSelect("cp")
+            ->where("cp.publishedAt <= :today")
+            ->setParameter('today', new \Datetime())
+
+            ->setMaxResults($limit)
         ;
         
         return $qb->getQuery()->getResult();

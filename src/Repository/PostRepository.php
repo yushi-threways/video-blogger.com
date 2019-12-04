@@ -47,21 +47,24 @@ class PostRepository extends ServiceEntityRepository
         return $qb->getQuery()->getResult();
     }
     
-    public function getCategoryPosts($title, $id, $limit = null)
+    public function getCategoryPosts($title, $id = null, $limit = null)
     {
         $qb = $this->createQueryBuilder("p");
         $qb->join("p.category", "c")
             ->where('c.title = :title')
-            ->andWhere("p.id != :id")
             ->andWhere("p.publishedAt <= :today")
             ->setParameters([
-                "id" => $id,
                 "title" => $title,
                 "today" => new \DateTime(),
             ])
             ->setMaxResults($limit)
             ->orderBy('p.createdAt', 'DESC')
         ;
+
+            if (null !== $id) {
+                $qb->andWhere("p.id != :id")
+                    ->setParameter('id', $id);
+            }
         
         return $qb->getQuery()->getResult();
     }

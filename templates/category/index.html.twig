@@ -17,7 +17,7 @@
       <div class="post-Index_Inner">
          <h2 class="post-Index_Title">カテゴリー{{ category.title }}投稿一覧</h2>
             <div class="post-List">
-               {% for post in category.posts %}
+               {% for post in posts %}
                <div class="post-Item">
                <a class="post-Item_Link" href="{{ path('post_show', {'category': post.category.slug, 'slug': post.slug}) }}">
                <div class="post-Item_Image">
