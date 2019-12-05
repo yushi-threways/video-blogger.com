@@ -33,7 +33,7 @@ class PostController extends AbstractController
     /**
      * @Route("/new", name="admin_post_new", methods={"GET","POST"})
      */
-    public function new(Request $request, PostRepository $postRepository): Response
+    public function create(Request $request, PostRepository $postRepository): Response
     {
         $client = new \Google_Client();
         $client->setApplicationName("Vlooger");
@@ -59,16 +59,17 @@ class PostController extends AbstractController
                 $content = json_decode($response->getContent(), true);
                 if (is_array($content)) {
                     // $content = $response->getContent();
+
                     $post->setVideo($data['videoId']);
                     $post->setSlug($data['videoId']);
                     $post->setPublishedAt($data['publishedAt']);
                     $post->setCategory($data['category']);
                     $videoData[] = $content['items'][0]['snippet'];
-
-                    var_dump($videoData[0]['description']);
+                    $summary = mb_substr($videoData[0]['description'], 0, 200);
 
                     $post->setTitle($videoData[0]['title']);
                     $post->setContent($videoData[0]['description']);
+                    $post->setSummary(str_replace(["\r\n", "\r", "\n"], '', $summary));
 
                     $entityManager = $this->getDoctrine()->getManager();
                     $entityManager->persist($post);

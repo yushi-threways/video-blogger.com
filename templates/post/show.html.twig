@@ -2,7 +2,7 @@
 
    {% block head %}
     <title>{{ post.title }}|video-blogger</title>
-    <meta name="description" content="">
+    <meta name="description" content="{{ post.summary }}">
     {% endblock %}
 
     {% block og %}
@@ -10,7 +10,7 @@
     <meta property="og:title" content="{{ post.title }}|video-blooder">
     <meta property="og:description" content="YouTubeに上がっているvlogger(video-blogger)の動画をカテゴライズしてまとめたサイトになります。">
     <meta property="og:type" content="blog">
-    <meta property="og:url" content="https://video-blogger.com">
+    <meta property="og:url" content="{{ url('post_show', {'category': post.category.slug, 'slug': post.slug}) }}">
     <meta property="og:image" content="">
     {% endblock %}
 
@@ -47,10 +47,11 @@
         </div>
     </div>
 </section>
-<section class="sw-Section">
-      {% include 'post/category_post.html.twig' %}
-</section>
-<section class="sw-Section">
+     <section class="sw-Section">
+        {% include 'post/category_post.html.twig' %}
+    </section>
+    {% set slug = post.slug  %}
+     <section class="sw-Section">
       {% set posts = randPosts %}
       {% include 'post/rand_post.html.twig' with posts %}
 </section> 
@@ -73,17 +74,19 @@
       });
       var itemHeights = []; //
       $(function(){
-      $(".post-Show_Content_Inner").each(function(){ //ターゲット(縮めるアイテム)
-         var thisHeight = $(this).height(); //ターゲットの高さを取得
-         itemHeights.push(thisHeight); //それぞれの高さを配列に入れる
-         $(this).addClass("is-hide"); //CSSで指定した高さにする
-      });
+          $(".post-Show_Content_Inner").each(function(){ //ターゲット(縮めるアイテム)
+             var thisHeight = $(this).height(); //ターゲットの高さを取得
+             itemHeights.push(thisHeight); //それぞれの高さを配列に入れる
+             $(this).addClass("is-hide"); //CSSで指定した高さにする
+          });
+
+          $(".post-Show_Content-trigger").click(function(){
+              var index = $(this).index(".post-Show_Content-trigger"); //トリガーが何個目か
+              var addHeight = itemHeights[index]; //個数に対応する高さを取得
+              $(this).fadeOut().addClass("is-show"); //高さを元に戻す
+              $(".post-Show_Content_Inner").removeClass("is-hide").next().animate({height: addHeight},200); //高さを元に戻す
+          });
       });
 
-      $(".post-Show_Content-trigger").click(function(){
-      var index = $(this).index(".post-Show_Content-trigger"); //トリガーが何個目か
-      var addHeight = itemHeights[index]; //個数に対応する高さを取得
-      $(this).fadeOut().addClass("is-show").next().animate({height: addHeight},200).removeClass("is-hide"); //高さを元に戻す
-      });
    </script>
 {% endblock %}

@@ -1,10 +1,18 @@
 {% extends "base.html.twig" %}
 
 {% block head %}
-   <title>{{ category.title }}一覧|Vlogger</title>
-   <meta name="description" content="">
-   <link rel="canonical" href="">
+   <title>{{ category.title }}の動画一覧|video-blogger</title>
+   <meta name="description" content="YouTubeに上がっているvlogger(video-blogger)の動画を{{ category.title }}でカテゴライズして見やすく一覧表示しています。">
 {% endblock %}
+
+    {% block og %}
+       <meta property="og:site_name" content="video-blogger">
+       <meta property="og:title" content="{{ category.title }}の動画一覧|video-blooder">
+       <meta property="og:description" content="YouTubeに上がっているvlogger(video-blogger)の動画を{{ category.title }}でカテゴライズして見やすく一覧表示しています。">
+       <meta property="og:type" content="blog">
+       <meta property="og:url" content="{{ url('category_index', {'slug': category.slug}) }}">
+       <meta property="og:image" content="">
+    {% endblock %}
 
 {% block stylesheet %}
    {{ parent() }}

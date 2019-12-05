@@ -20,11 +20,11 @@ class PostType extends AbstractType
             'label' => 'タイトル',
         ])
          ->add('slug', null, [
-            'attr' => ['autofocus' => true],
-            'label' => 'スラッグ',
             'attr' => [
+                'autofocus' => true,
                 'placeholder' => 'URLになります',
             ],
+            'label' => 'スラッグ',
         ])
         ->add('video', null, [
             'attr' => ['autofocus' => true],
