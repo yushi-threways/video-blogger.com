@@ -20,7 +20,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PostRepository")
- * @UniqueEntity("video")
+ * @UniqueEntity("video", groups={"create"})
  */
 class Post
 {
@@ -124,6 +124,16 @@ class Post
      * @ORM\OneToMany(targetEntity="App\Entity\Favorite", mappedBy="post")
      */
     private $favorites;
+
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Post", cascade={"persist", "remove"})
+     */
+    private $next;
+
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Post", cascade={"persist", "remove"})
+     */
+    private $previous;
 
     public function __construct()
     {
@@ -274,6 +284,30 @@ class Post
                 $favorite->setPost(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getNext(): ?self
+    {
+        return $this->next;
+    }
+
+    public function setNext(?self $next): self
+    {
+        $this->next = $next;
+
+        return $this;
+    }
+
+    public function getPrevious(): ?self
+    {
+        return $this->previous;
+    }
+
+    public function setPrevious(?self $previous): self
+    {
+        $this->previous = $previous;
 
         return $this;
     }

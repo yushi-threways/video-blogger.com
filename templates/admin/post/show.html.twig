@@ -20,6 +20,10 @@
                 <td>{{ post.id }}</td>
             </tr>
             <tr>
+                <th>サムネイル</th>
+                <td><img src="http://i.ytimg.com/vi/{{ post.video }}/default.jpg" alt="{{ post.title }}"></td>
+            </tr>
+            <tr>
                 <th>タイトル</th>
                 <td>{{ post.title }}</td>
             </tr>
@@ -38,6 +42,23 @@
             <tr>
                 <th>公開日</th>
                 <td>{{ post.publishedAt ? post.publishedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>次の投稿</th>
+                <td>
+
+                    {% if post.next %}
+                        <a href="{{ path('admin_post_show', {'id': post.next.id}) }}">{{ post.next.title }}</a>
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <th>前の投稿</th>
+                <td>
+                    {% if post.previous %}
+                        <a href="{{ path('admin_post_show', {'id': post.previous.id}) }}">{{ post.previous.title }}</a>
+                    {% endif %}
+                </td>
             </tr>
         </tbody>
     </table>
