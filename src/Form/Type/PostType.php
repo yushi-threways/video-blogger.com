@@ -4,6 +4,7 @@ namespace App\Form\Type;
 
 use App\Entity\Post;
 use App\Entity\Category;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -53,6 +54,13 @@ class PostType extends AbstractType
                 'label' => '次の投稿',
                 'required' => false,
                 'placeholder' => 'Choose an post',
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('p')
+                        ->where('p.previous is null')
+                        ->orderBy('p.title', 'ASC')
+                        ;
+                },
+
             ])
             ->add('previous', EntityType::class, [
                 'class' => Post::class,
@@ -60,6 +68,11 @@ class PostType extends AbstractType
                 'label' => '前の投稿',
                 'required' => false,
                 'placeholder' => 'Choose an post',
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('p')
+                        ->where('p.next is null')
+                        ->orderBy('p.title', 'ASC');
+                },
             ])
         ;
     }
