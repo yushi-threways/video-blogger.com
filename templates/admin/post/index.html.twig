@@ -18,6 +18,8 @@
                 <th>タイトル</th>
                 <th>ビデオID</th>
                 <th>カテゴリー</th>
+                <th>次の投稿</th>
+                <th>前の投稿</th>
                 <th>公開日</th>
                 <th>actions</th>
             </tr>
@@ -29,6 +31,8 @@
                 <td>{{ post.title }}</td>
                 <td>{{ post.slug }}</td>
                 <td>{{ post.category }}</td>
+                <td>{% if post.next %}<a href="{{ path('admin_post_show', {'id': post.next.id}) }}">{{ post.next.title }}</a>{% endif %}</td>
+                <td>{% if post.previous %}<a href="{{ path('admin_post_show', {'id': post.next.id}) }}">{{ post.previous.title }}</a>{% endif %}</td>
                 <td>{{ post.publishedAt ? post.publishedAt|date('Y-m-d H:i') : '' }}</td>
                 <td>
                     <a class="btn btn-sm btn-primary mb-1" href="{{ path('admin_post_show', {'id': post.id}) }}">詳細</a>

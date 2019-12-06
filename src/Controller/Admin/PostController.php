@@ -33,7 +33,7 @@ class PostController extends AbstractController
     /**
      * @Route("/new", name="admin_post_new", methods={"GET","POST"})
      */
-    public function create(Request $request, PostRepository $postRepository): Response
+    public function create(Request $request): Response
     {
         $client = new \Google_Client();
         $client->setApplicationName("Vlooger");
@@ -46,7 +46,7 @@ class PostController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
 
-            $url =  'https://www.googleapis.com/youtube/v3/videos?id=' . $data['videoId'] . '&key=' . self::API_KEY .'&fields=items(id,snippet(channelId,title,categoryId,description),statistics)&part=snippet,statistics';
+            $url =  'https://www.googleapis.com/youtube/v3/videos?id=' . $data->getVideo() . '&key=' . self::API_KEY .'&fields=items(id,snippet(channelId,title,categoryId,description),statistics)&part=snippet,statistics';
 
             $httpClient = HttpClient::create();
             $response = $httpClient->request(
@@ -60,10 +60,14 @@ class PostController extends AbstractController
                 if (is_array($content)) {
                     // $content = $response->getContent();
 
-                    $post->setVideo($data['videoId']);
-                    $post->setSlug($data['videoId']);
-                    $post->setPublishedAt($data['publishedAt']);
-                    $post->setCategory($data['category']);
+                    $post->setVideo($data->getVideo());
+                    $post->setSlug($data->getVideo());
+                    $post->setPublishedAt($data->getPublishedAt());
+                    $post->setCategory($data->getCategory());
+
+                    $post->setNext($data->getNext());
+                    $post->setPrevious($data->getPrevious());
+
                     $videoData[] = $content['items'][0]['snippet'];
                     $summary = mb_substr($videoData[0]['description'], 0, 200);
 
