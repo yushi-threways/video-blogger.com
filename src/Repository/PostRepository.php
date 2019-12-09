@@ -68,4 +68,19 @@ class PostRepository extends ServiceEntityRepository
         
         return $qb->getQuery()->getResult();
     }
+
+    public function getnext(Post $post)
+    {
+        $qb = $this->createQueryBuilder("p");
+        $qb->leftJoin("p.next", "pn")
+        ->where('p.next is null')
+        ->andWhere("p.id != :id")
+        ->setParameters([
+            'id' => $post,            
+        ])
+        ->orderBy('p.createdAt', 'DESC')
+        ;
+        
+        return $qb->getQuery()->getResult();
+    }
 }

@@ -15,6 +15,10 @@ class PostType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $post_id = $options['post_id'];
+        $post_next = $options['post_id'];
+        $post_previous = $options['post_id'];
+
         $builder
             ->add('title', null, [
                 'attr' => ['autofocus' => true],
@@ -54,9 +58,13 @@ class PostType extends AbstractType
                 'label' => '次の投稿',
                 'required' => false,
                 'placeholder' => 'Choose an post',
-                'query_builder' => function (EntityRepository $er) {
+                'query_builder' => function (EntityRepository $er) use ($post_id, $post_previous) {
                     return $er->createQueryBuilder('p')
                         ->where('p.previous is null')
+                        ->andWhere("p.id != :id")
+                        ->setParameters([
+                            'id' => $post_id,
+                        ])
                         ->orderBy('p.title', 'ASC')
                         ;
                 },
@@ -68,9 +76,11 @@ class PostType extends AbstractType
                 'label' => '前の投稿',
                 'required' => false,
                 'placeholder' => 'Choose an post',
-                'query_builder' => function (EntityRepository $er) {
+                'query_builder' => function (EntityRepository $er) use ($post_id) {
                     return $er->createQueryBuilder('p')
                         ->where('p.next is null')
+                        ->andWhere("p.id != :id")
+                        ->setParameter('id', $post_id)
                         ->orderBy('p.title', 'ASC');
                 },
             ])
@@ -81,6 +91,16 @@ class PostType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Post::class,
+        ]);
+        $resolver->setRequired(['post_id', 'post_next', 'post_previous']);
+        $resolver->setAllowedTypes('post_id', [Post::class, 'integer']);
+        $resolver->setAllowedTypes('post_next', [
+            Post::class, 'object',
+            Post::class, 'null'
+        ]);
+        $resolver->setAllowedTypes('post_previous', [
+            Post::class, 'object',
+            Post::class, 'null'
         ]);
     }
 }

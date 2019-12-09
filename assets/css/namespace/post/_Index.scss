@@ -151,6 +151,17 @@
     @include font-size(20px)
 }
 
+
+.post-Item_Icon {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    position: absolute;
+    bottom: 0;
+    right: 5px;
+    @include font-size(20px)
+}
+
 .post-favorite {
 
 }

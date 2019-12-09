@@ -40,7 +40,10 @@
                   data-remove-url="{{ path("remove_post_favorite", {id: post.id})}}"
                >{{ isFavorite? '<i class="fas fa-bookmark"></i>':'<i class="fas fa-bookmark"></i>' }}</button>
                {% else %}
-
+               <button type="button" class="post-Item_Favorite"
+                  data-add-url="{{ path("add_post_favorite", {id: post.id}) }}"
+                  data-remove-url="{{ path("remove_post_favorite", {id: post.id})}}"
+               ><i class="fas fa-bookmark"></i></button>
                {% endif %}
             </div>
             {% else %}

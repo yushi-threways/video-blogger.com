@@ -41,7 +41,7 @@ class ApiPostType extends AbstractType
                 'placeholder' => 'Choose an post',
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('p')
-                        ->where('p.previous is not null')
+                        ->where('p.previous is null')
                         ->orderBy('p.title', 'ASC')
                         ;
                 },
@@ -55,6 +55,7 @@ class ApiPostType extends AbstractType
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('p')
                         ->where('p.next is null')
+                        ->setParameter('id', $post)
                         ->orderBy('p.title', 'ASC');
                 },
             ])
@@ -66,7 +67,8 @@ class ApiPostType extends AbstractType
         $resolver->setDefaults([
             'data_class' => Post::class,
             'validation_groups' => ['create'],
-
         ]);
+       
+
     }
 }

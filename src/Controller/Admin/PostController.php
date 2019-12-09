@@ -98,10 +98,13 @@ class PostController extends AbstractController
     /**
      * @Route("/{id}", name="admin_post_show", methods={"GET"})
      */
-    public function show(Post $post): Response
+    public function show(Post $post, PostRepository $postRepository): Response
     {
+        $next = $postRepository->getnext($post);
+
         return $this->render('admin/post/show.html.twig', [
             'post' => $post,
+            'next' => $next,
         ]);
     }
 
@@ -110,7 +113,11 @@ class PostController extends AbstractController
      */
     public function edit(Request $request, Post $post): Response
     {
-        $form = $this->createForm(PostType::class, $post);
+        $form = $this->createForm(PostType::class, $post, [
+            'post_id' => $post->getId(), 
+            'post_next' => $this->isNext($post), 
+            'post_previous' => $this->isPrev($post)
+        ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -137,5 +144,23 @@ class PostController extends AbstractController
         }
 
         return $this->redirectToRoute('admin_post_index');
+    }
+
+    public function isNext(Post $post)
+    {
+        $nextPost = $post->getNext();
+        if ($nextPost) {
+            return $nextPost;
+        }
+        return null;
+    }
+
+    public function isPrev(Post $post)
+    {
+        $prevPost = $post->getPrevious();
+        if ($prevPost) {
+            return $prevPost;
+        }
+        return null;
     }
 }
