@@ -55,7 +55,6 @@ class ApiPostType extends AbstractType
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('p')
                         ->where('p.next is null')
-                        ->setParameter('id', $post)
                         ->orderBy('p.title', 'ASC');
                 },
             ])

@@ -16,8 +16,8 @@ class PostType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $post_id = $options['post_id'];
-        $post_next = $options['post_id'];
-        $post_previous = $options['post_id'];
+        $post_next = $options['post_next'];
+        $post_previous = $options['post_previous'];
 
         $builder
             ->add('title', null, [
@@ -58,13 +58,10 @@ class PostType extends AbstractType
                 'label' => '次の投稿',
                 'required' => false,
                 'placeholder' => 'Choose an post',
-                'query_builder' => function (EntityRepository $er) use ($post_id, $post_previous) {
+                'query_builder' => function (EntityRepository $er) use ($post_id) {
                     return $er->createQueryBuilder('p')
-                        ->where('p.previous is null')
-                        ->andWhere("p.id != :id")
-                        ->setParameters([
-                            'id' => $post_id,
-                        ])
+                        ->where("p.id != :id")
+                        ->setParameter('id', $post_id)
                         ->orderBy('p.title', 'ASC')
                         ;
                 },
@@ -76,12 +73,12 @@ class PostType extends AbstractType
                 'label' => '前の投稿',
                 'required' => false,
                 'placeholder' => 'Choose an post',
-                'query_builder' => function (EntityRepository $er) use ($post_id) {
+                'query_builder' => function (EntityRepository $er) use ($post_id, $post_next) {
                     return $er->createQueryBuilder('p')
-                        ->where('p.next is null')
-                        ->andWhere("p.id != :id")
+                        ->where("p.id != :id")
                         ->setParameter('id', $post_id)
-                        ->orderBy('p.title', 'ASC');
+                        ->orderBy('p.title', 'ASC')
+                    ;
                 },
             ])
         ;

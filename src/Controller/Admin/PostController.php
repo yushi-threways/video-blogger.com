@@ -65,9 +65,15 @@ class PostController extends AbstractController
                     $post->setPublishedAt($data->getPublishedAt());
                     $post->setCategory($data->getCategory());
 
-                    $post->setNext($data->getNext());
-                    $post->setPrevious($data->getPrevious());
-
+                    if ($post->setNext($data->getNext())) {
+                        $nextPost = $data->getNext();
+                        $nextPost->setPrevious($post);
+                    }
+                    if ($post->setPrevious($data->getPrevious())) {
+                        $prevPost = $data->getPrevious();
+                        $prevPost->setNext($post);
+                    }
+                    
                     $videoData[] = $content['items'][0]['snippet'];
                     $summary = mb_substr($videoData[0]['description'], 0, 200);
 
