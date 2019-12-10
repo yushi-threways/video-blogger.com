@@ -65,11 +65,12 @@ class PostController extends AbstractController
                     $post->setPublishedAt($data->getPublishedAt());
                     $post->setCategory($data->getCategory());
 
-                    if ($post->setNext($data->getNext())) {
+                    if ($data->getNext()) {
                         $nextPost = $data->getNext();
                         $nextPost->setPrevious($post);
+
                     }
-                    if ($post->setPrevious($data->getPrevious())) {
+                    if ($data->getPrevious()) {
                         $prevPost = $data->getPrevious();
                         $prevPost->setNext($post);
                     }
@@ -127,6 +128,17 @@ class PostController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
+
+            if ($data->getNext()) {
+                $nextPost = $data->getNext();
+                $nextPost->setPrevious($post);
+            }
+
+            if ($data->getPrevious()) {
+                $prevPost = $data->getPrevious();
+                $prevPost->setNext($post);
+            }
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('admin_post_index');
@@ -145,6 +157,16 @@ class PostController extends AbstractController
     {
         if ($this->isCsrfTokenValid('delete'.$post->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
+            if ($post->getNext()) {
+                $postNext = $post->getNext();
+                $postNext->setPrevious(null);
+                $post->setNext(null);
+            }
+            if ($post->getPrevious()) {
+                $postPrev = $post->getPrevious();
+                $postPrev->setNext(null);
+                $post->setPrevious(null);
+            }
             $entityManager->remove($post);
             $entityManager->flush();
         }
