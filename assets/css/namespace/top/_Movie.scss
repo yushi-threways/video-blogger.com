@@ -8,7 +8,7 @@
 }
 
 .movie-Area_Title {
-    margin-bottom: 24px;
+    margin: 0 auto;
     position: relative;
     width: 100%;
     display: -webkit-box;
@@ -19,23 +19,11 @@
     -webkit-align-items: center;
     -ms-flex-align: center;
     align-items: center;
-    @include font-size(18px);
-    display: inline-block;
-    margin-right: 16px;
+    @include font-size(16px);
     font-weight: normal;
     @include media-breakpoint-down(sm) {
         width: 100%;
-        padding: 0 10px;
-        margin: 0 auto 8px;
-    }
-    a {
-        @include font-size(18px);
-        display: inline-block;
-        margin-right: 16px;
-        font-weight: normal;
-        @include media-breakpoint-down(sm) {
-            @include font-size(16px);
-        }
+        @include font-size(14px);
     }
 }
 .top-Movie_List {
@@ -96,4 +84,30 @@
     margin: 0 0 24px;
     padding: 0 0 24px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.movie-Area_Header {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    padding: 0 0 20px;
+    align-items: center;
+}
+
+.movie-Area_Link {
+    margin: 0 auto;
+    a {
+        @include font-size(13px);
+        letter-spacing: 2px;
+        color: #fff;
+        white-space: nowrap;
+        font-weight: normal;
+        display: block;
+        i {
+            padding: 0 0 0 5px;
+            @include font-size(16px);
+            vertical-align: middle;
+            color: #dc143c;
+        }
+    }
 }

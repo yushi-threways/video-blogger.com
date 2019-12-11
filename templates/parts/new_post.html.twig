@@ -1,6 +1,9 @@
 <div class="movie-Area">
       <div class="movie-Area_Inner">
-         <h2 class="movie-Area_Title"><a href="{{ path('post_index') }}">新しい投稿</a></h2>
+         <div class="movie-Area_Header">
+         <h2 class="movie-Area_Title">新しい投稿</h2>
+         <h3 class="movie-Area_Link"><a href="{{ path('post_index') }}">View More<i class="fa fa-caret-right"></i></a></h3>
+         </div>
          <!-- Slider main container -->
          <div class="swiper-container">
             <!-- Additional required wrapper -->
@@ -21,7 +24,7 @@
                   <a href="{{ path('category_index', {'slug': post.category.slug}) }}">{{ post.category }}</a>
                </div>
                {% endif %}
-               <div class="movie-Item_Tag">
+               {# <div class="movie-Item_Tag">
                   <div class="movie-Item_TagIcon">
                      <i class="fas fa-tags"></i>
                   </div>
@@ -30,7 +33,7 @@
                      <li class="movie-Item_TagItem"><a href="">タグ</a></li>
                      <li class="movie-Item_TagItem"><a href="">タグ</a></li>
                   </ul>
-               </div>
+               </div> #}
                {% if is_granted('ROLE_USER') %}
                {% set isFavorite = is_favorite(post) %}
                <button type="button" class="post-Item_Favorite {{ isFavorite? 'post-favorited': 'post-favorite' }}"

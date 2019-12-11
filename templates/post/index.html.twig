@@ -40,7 +40,7 @@
                   <a href="">{{ post.category }}</a>
                </div>
                {% endif %}
-               <div class="post-Item_Tag">
+               {# <div class="post-Item_Tag">
                   <div class="post-Item_TagIcon">
                      <i class="fas fa-tags"></i>
                   </div>
@@ -49,17 +49,19 @@
                      <li class="post-Item_TagItem"><a href="">タグ</a></li>
                      <li class="post-Item_TagItem"><a href="">タグ</a></li>
                   </ul>
-               </div>
+               </div> #}
                {% if is_granted('ROLE_USER') %}
                {% set isFavorite = is_favorite(post) %}
                <button type="button" class="post-Item_Favorite {{ isFavorite? 'post-favorited': 'post-favorite' }}"
                   data-add-url="{{ path("add_post_favorite", {id: post.id}) }}"
                   data-remove-url="{{ path("remove_post_favorite", {id: post.id})}}"
-               >{{ isFavorite? '<i class="fas fa-bookmark"></i>':'<i class="fas fa-bookmark"></i>' }}</button>
+               >{{ isFavorite? '<i class="fas fa-star"></i>':'<i class="fas fa-star"></i>' }}</button>
                {% else %}
-
+               <button type="button" class="post-Item_Icon" data-toggle="modal" data-target="#exampleModalCenter"
+                  data-add-url="{{ path("add_post_favorite", {id: post.id}) }}"
+                  data-remove-url="{{ path("remove_post_favorite", {id: post.id})}}"
+               ><i class="fas fa-star"></i></button>
                {% endif %}
-               
             </div>
             {% else %}
             <div>
