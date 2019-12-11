@@ -112,11 +112,9 @@
                                             <li class="sw-Side_Item">
                                                 <h3 class="sw-Side_ItemTitle">コンテンツ</h3>
                                                 <ul class="sw-Side_ItemLists">
-                                                    <li class="sw-Side_ItemList"><a href="{{ path('site_static', {page: "about"}) }}">Vlogまとめについて</a></li>
-                                                    <li class="sw-Side_ItemList"><a href="{{ path('site_static', {page: "qa"}) }}">お問い合わせ</a></li> 
-                                                    <li class="sw-Side_ItemList"><a href="{{ path('site_static', {page: "qa"}) }}">利用規約</a></li> 
-                                                    <li class="sw-Side_ItemList"><a href="{{ path('site_static', {page: "qa"}) }}">プライバシーポリシー</a></li> 
-                                                    <li class="sw-Side_ItemList"><a href="{{ path('site_static', {page: "qa"}) }}">ヘルプ</a></li>
+                                                    <li class="sw-Side_ItemList"><a href="{{ path('site_static', {page: "agree"}) }}">お問い合わせ</a></li> 
+                                                    <li class="sw-Side_ItemList"><a href="{{ path('site_static', {page: "agree"}) }}">利用規約</a></li> 
+                                                    <li class="sw-Side_ItemList"><a href="{{ path('site_static', {page: "pp"}) }}">プライバシーポリシー</a></li> 
                                                 </ul>
                                                 {% if is_granted('ROLE_USER') %}
                                                 <ul class="sw-Side_ItemLists">

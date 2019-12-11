@@ -8,7 +8,7 @@ use Twig_Error_Loader;
 class StaticController extends AbstractController
 {
     /**
-     * @Route("/{page}", name="site_static", requirements={"page"="about|agree  |qa|guide"})
+     * @Route("/{page}", name="site_static", requirements={"page"="agree|pp"})
      */
     public function index($page)
     {
