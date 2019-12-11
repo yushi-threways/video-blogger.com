@@ -22,16 +22,6 @@
     position: relative;
     margin: 0 auto 20px;
 }
-.post-Show_Movie-pc {
-    @include media-breakpoint-down(sm) {
-       display: none;
-    }
-}
-.post-Show_Movie-sp {
-    @include media-breakpoint-up(sm) {
-        display: none;
-     }
-}
 
   .post-Show_Content + .post-Show_Content {
     margin-top: 40px;

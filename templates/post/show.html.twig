@@ -24,16 +24,9 @@
     <div class="post-Show">
         <div class="post-Show_Inner">
             <div class="post-Show_Movie">
-               <div class="post-Show_Movie-sp">
-                  <iframe id="ytplayer" type="text/html" width="100%" height="300"
+                  <iframe id="ytplayer" type="text/html" width="100%" height="350"
                   src="https://www.youtube.com/embed/{{ post.video }}?autoplay=0&origin=https://video-blogger.com/"
                   allow="fullscreen"></iframe>
-               </div>
-               <div class="post-Show_Movie-pc">
-                  <iframe id="ytplayer" type="text/html" width="100%" height="600"
-                  src="https://www.youtube.com/embed/{{ post.video }}?autoplay=0&origin=https://video-blogger.com"
-                  allow="fullscreen"></iframe>
-               </div>
             </div>
             <div class="post-Show_Title">{{ post.title }}</div>
             <div class="post-Show_Content">
@@ -60,33 +53,5 @@
 
 {% block javascripts %}
    {{ parent() }}
-   <script>
-      $(window).on('load resize', function(){
-         var winW = $(window).width();
-         var devW = 767;
-         if (winW <= devW) {
-            //767px以下の時の処理
-            $(".post-Show_Movie-pc").remove();
-         } else {
-            //768pxより大きい時の処理
-            $(".post-Show_Movie-sp").remove();
-         }
-      });
-      var itemHeights = []; //
-      $(function(){
-          $(".post-Show_Content_Inner").each(function(){ //ターゲット(縮めるアイテム)
-             var thisHeight = $(this).height(); //ターゲットの高さを取得
-             itemHeights.push(thisHeight); //それぞれの高さを配列に入れる
-             $(this).addClass("is-hide"); //CSSで指定した高さにする
-          });
 
-          $(".post-Show_Content-trigger").click(function(){
-              var index = $(this).index(".post-Show_Content-trigger"); //トリガーが何個目か
-              var addHeight = itemHeights[index]; //個数に対応する高さを取得
-              $(this).fadeOut().addClass("is-show"); //高さを元に戻す
-              $(".post-Show_Content_Inner").removeClass("is-hide").next().animate({height: addHeight},200); //高さを元に戻す
-          });
-      });
-
-   </script>
 {% endblock %}
