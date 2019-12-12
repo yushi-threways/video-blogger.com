@@ -3,6 +3,7 @@
 {% block head %}
    <title>{{ category.title }}の動画一覧|video-blogger</title>
    <meta name="description" content="YouTubeに上がっているvlogger(video-blogger)の動画を{{ category.title }}でカテゴライズして見やすく一覧表示しています。">
+   <link rel="canonical" href="{{ absolute_url(path('category_index', {'slug': category.slug})) }}">
 {% endblock %}
 
     {% block og %}

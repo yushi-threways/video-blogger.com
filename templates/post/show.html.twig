@@ -3,6 +3,7 @@
    {% block head %}
     <title>{{ post.title }}|video-blogger</title>
     <meta name="description" content="{{ post.summary }}">
+    <link rel="canonical" href="{{ absolute_url(path('post_show', {'category': post.category.slug, 'slug': post.slug})) }}">
     {% endblock %}
 
     {% block og %}

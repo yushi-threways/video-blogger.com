@@ -6,28 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="format-detection" content="telephone=no">
 
-    {% block head %}
-    <title></title>
-    <meta name="description" content="">
-    <link rel="canonical" href="">
-    {% endblock %}
-
-    {% block og %}
-    <meta property="og:site_name" content="Vlogger">
-    <meta property="og:title" content="">
-    <meta property="og:description" content="">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="サイトのURL貼る">
-    <meta property="og:image" content="ogpのURL貼る">
-    {% endblock %}
-    
-    {% block twitter %}
-    <meta property="fb:app_id" content="App-ID（15文字の半角数字）" />
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:site" content="サイトのURL貼る">
-    <meta name="twitter:image" content="ogpのURL貼る">
-    {% endblock %}
-
     {% block stylesheets %}
         {# 'app' must match the first argument to addEntry() in webpack.config.js #}
         {{ encore_entry_link_tags('app') }}
