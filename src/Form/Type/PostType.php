@@ -16,8 +16,8 @@ class PostType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $post_id = $options['post_id'];
-        $post_next = $options['post_next'];
-        $post_previous = $options['post_previous'];
+        // $post_next = $options['post_next'];
+        // $post_previous = $options['post_previous'];
 
         $builder
             ->add('title', null, [
@@ -58,27 +58,14 @@ class PostType extends AbstractType
                 'label' => '次の投稿',
                 'required' => false,
                 'placeholder' => 'Choose an post',
-                'query_builder' => function (EntityRepository $er) use ($post_id, $post_previous) {
+                'query_builder' => function (EntityRepository $er) use ($post_id) {
                     $qb = $er->createQueryBuilder('p');
                     $qb->where("p.id != :id")
                         ->setParameters(['id' => $post_id])
                         ->orderBy('p.title', 'ASC')
                     ;
-                    if ($post_previous) {
-                        $qb->andWhere(
-                            $qb->expr()->orX(
-                                $qb->expr()->neq('p.previous', ':post_previous_id'),
-                                $qb->expr()->isNull('p.previous')
-                            )
-                        )
-                            ->setParameter('post_previous_id', $post_previous)
-                        ;
-                    } else {
-                        $qb->andWhere("p.previous is null");
-                    }
                     return $qb;
                 },
-
             ])
             ->add('previous', EntityType::class, [
                 'class' => Post::class,
@@ -86,24 +73,12 @@ class PostType extends AbstractType
                 'label' => '前の投稿',
                 'required' => false,
                 'placeholder' => 'Choose an post',
-                'query_builder' => function (EntityRepository $er) use ($post_id, $post_next) {
+                'query_builder' => function (EntityRepository $er) use ($post_id) {
                     $qb = $er->createQueryBuilder('p');
                     $qb->where("p.id != :id")
-                        ->setParameters(['id' => $post_id])
-                        ->orderBy('p.title', 'ASC')
-                    ;
-                    if ($post_next) {
-                        $qb->andWhere(
-                            $qb->expr()->orX(
-                                $qb->expr()->neq('p.next', ':post_next_id'),
-                                $qb->expr()->isNull('p.next')
-                            )
-                        )
-                            ->setParameter('post_next_id', $post_next)
+                            ->setParameters(['id' => $post_id])
+                            ->orderBy('p.title', 'ASC')
                         ;
-                    } else {
-                        $qb->andWhere("p.next is null");
-                    }
                     return $qb;
                 },
             ])
@@ -115,15 +90,15 @@ class PostType extends AbstractType
         $resolver->setDefaults([
             'data_class' => Post::class,
         ]);
-        $resolver->setRequired(['post_id', 'post_next', 'post_previous']);
-        $resolver->setAllowedTypes('post_id', [Post::class, 'integer']);
-        $resolver->setAllowedTypes('post_next', [
-            Post::class, 'arrya',
-            Post::class, 'null'
-        ]);
-        $resolver->setAllowedTypes('post_previous', [
-            Post::class, 'object',
-            Post::class, 'null'
-        ]);
+        $resolver->setRequired(['post_id']);
+        // $resolver->setAllowedTypes('post_id', [Post::class, 'integer']);
+        // $resolver->setAllowedTypes('post_next', [
+        //     Post::class, 'arrya',
+        //     Post::class, 'null'
+        // ]);
+        // $resolver->setAllowedTypes('post_previous', [
+        //     Post::class, 'object',
+        //     Post::class, 'null'
+        // ]);
     }
 }

@@ -20,26 +20,62 @@
 
 {% block main %}
  <div class="sw-Content_Inner sw-Content_PaddingMd">
-<section class="sw-Section">
-    <div class="post-Show">
-        <div class="post-Show_Inner">
-            <div class="post-Show_Movie">
-                  <iframe id="ytplayer" type="text/html" width="100%" height="350"
-                  src="https://www.youtube.com/embed/{{ post.video }}?autoplay=0&origin=https://video-blogger.com/"
-                  allow="fullscreen"></iframe>
-            </div>
-            <div class="post-Show_Title">{{ post.title }}</div>
-            <div class="post-Show_Content">
-               <div class="post-Show_Content_Inner">
-                  <p>
-                     {{ post.content|nl2br }}
-                  </p>
-               </div>
-               <span class="post-Show_Content-trigger">続きを読む</span>
+    <section class="sw-Section">
+        <div class="post-Show">
+            <div class="post-Show_Inner">
+                <div class="post-Show_Movie">
+                    <iframe id="ytplayer" type="text/html" width="100%" height="300"
+                    src="https://www.youtube.com/embed/{{ post.video }}?autoplay=0&origin=https://video-blogger.com/"
+                    allow="fullscreen" frameborder="no"></iframe>
+                </div>
+                <div class="post-Show_Title">{{ post.title }}</div>
+                <div class="post-Show_Content">
+                    <div class="post-Show_Content_Inner">
+                        <p>
+                            {{ post.content|nl2br }}
+                        </p>
+                    </div>
+                    <span class="post-Show_Content-trigger">続きを読む</span>
+                </div>
+                {% if (post.next and post.previous) %}
+                <div class="post-Show_Unit">
+                    {# {% if (post.previous) %}
+                        <div class="post-Show_Next">
+                        <h3 class="post-Show_NextTitle">前の動画</h3>
+                            <div class="post-Show_NextInner">
+                                <a class="post-Show_NextLink" href="{{ path('post_show', {'category': post.previous.category.slug, 'slug': post.previous.slug}) }}">
+                                    <div class="post-Show_NextImg">
+                                        <img src="http://i.ytimg.com/vi/{{ post.previous.video }}/sddefault.jpg" alt="{{ post.previous.title }}">
+                                    </div>
+                                    <div class="post-Show_NextContent">
+                                    <h3 class="post-Show_NextContent-title">{{ post.next.title }}</h3>
+                                    <p class="post-Show_NextContent-category">{{ post.next.category }}</p>
+                                    </div>
+                                 </a>
+                            </div>
+                        </div>
+                    {% endif %} #}
+                    {% if (post.next) %}
+                        <div class="post-Show_Next">
+                        <h3 class="post-Show_NextTitle">次の動画</h3>
+                            <div class="post-Show_NextInner">
+                                <a class="post-Show_NextLink" href="{{ path('post_show', {'category': post.next.category.slug, 'slug': post.next.slug}) }}">
+                                    <div class="post-Show_NextImg">
+                                        <img src="http://i.ytimg.com/vi/{{ post.next.video }}/sddefault.jpg" alt="{{ post.next.title }}">
+                                    </div>
+                                    <div class="post-Show_NextContent">
+                                    <h3 class="post-Show_NextContent-title">{{ post.next.title }}</h3>
+                                    <p class="post-Show_NextContent-category">{{ post.next.category }}</p>
+                                    </div>
+                                 </a>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+                {% endif %}
             </div>
         </div>
-    </div>
-</section>
+    </section>
      <section class="sw-Section">
         {% include 'post/category_post.html.twig' %}
     </section>
@@ -47,7 +83,7 @@
      <section class="sw-Section">
       {% set posts = randPosts %}
       {% include 'post/rand_post.html.twig' with posts %}
-</section> 
+    </section> 
 </div>
 {% endblock %}
 

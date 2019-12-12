@@ -1,6 +1,8 @@
 <div class="movie-Area">
       <div class="movie-Area_Inner">
-         <h2 class="movie-Area_Title">他の人はこんなを動画をみています</h2>
+         <div class="movie-Area_Header">
+            <h2 class="movie-Area_Title">他の人はこんなを動画をみています</h2>
+         </div>          
          <!-- Slider main container -->
          <div class="swiper-container">
             <!-- Additional required wrapper -->
@@ -31,6 +33,18 @@
                      <li class="movie-Item_TagItem"><a href="">タグ</a></li>
                   </ul>
                </div> #}
+               {% if is_granted('ROLE_USER') %}
+               {% set isFavorite = is_favorite(post) %}
+               <button type="button" class="post-Item_Favorite {{ isFavorite? 'post-favorited': 'post-favorite' }}"
+                  data-add-url="{{ path("add_post_favorite", {id: post.id}) }}"
+                  data-remove-url="{{ path("remove_post_favorite", {id: post.id})}}"
+               >{{ isFavorite? '<i class="fas fa-star"></i>':'<i class="fas fa-star"></i>' }}</button>
+               {% else %}
+               <button type="button" class="post-Item_Icon" data-toggle="modal" data-target="#exampleModalCenter"
+                  data-add-url="{{ path("add_post_favorite", {id: post.id}) }}"
+                  data-remove-url="{{ path("remove_post_favorite", {id: post.id})}}"
+               ><i class="fas fa-star"></i></button>
+               {% endif %}
             </div>
             {% else %}
             <div>
@@ -38,11 +52,6 @@
             </div>
             {% endfor %}
             </div>
-
-            <!-- If we need navigation buttons -->
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-button-next"></div>
-
          </div>
       </div>
    </div>

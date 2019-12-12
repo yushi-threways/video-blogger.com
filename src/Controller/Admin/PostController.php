@@ -122,8 +122,8 @@ class PostController extends AbstractController
     {
         $form = $this->createForm(PostType::class, $post, [
             'post_id' => $post->getId(), 
-            'post_next' => $this->isNext($post), 
-            'post_previous' => $this->isPrev($post)
+            // 'post_next' => $this->isNext($post), 
+            // 'post_previous' => $this->isPrev($post)
         ]);
         $form->handleRequest($request);
 
