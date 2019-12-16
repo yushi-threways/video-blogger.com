@@ -1,6 +1,17 @@
 <!DOCTYPE html>
 <html lang="ja" prefix="og: http://ogp.me/ns#">
     <head>
+    {% if (app.environment == "prod") %}
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145870192-2"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-145870192-2');
+        </script>
+    {% endif %}
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,7 +27,7 @@
     <meta property="og:title" content="video-blooderトップ">
     <meta property="og:description" content="YouTubeに上がっているvlogger(video-blogger)の動画をカテゴライズしてまとめたサイトになります。">
     <meta property="og:type" content="blog">
-    <meta property="og:url" content="https://video-blogger.com">
+    <meta property="og:url" content="https://video-blogger.com/">
     <meta property="og:image" content="">
     {% endblock %}
     
@@ -37,7 +48,6 @@
     </head>
     <body>
         <div id="sw-Body" class="sw-Body">
-
             <div class="sw-Body_Inner">
 
                 {% block body %}
