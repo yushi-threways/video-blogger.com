@@ -42,3 +42,15 @@
 //         padding: 0;
 //     }
 // }
+
+.sw-Content_SpOnly {
+    @include media-breakpoint-up(sm) {
+        display: none;
+    }
+}
+
+.sw-Content_PcOnly {
+    @include media-breakpoint-down(sm) {
+        display: none;
+    }
+}

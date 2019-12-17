@@ -3,7 +3,7 @@
    <div class="movie-Area">
       <div class="movie-Area_Inner">
          <div class="movie-Area_Header">
-         <h2 class="movie-Area_Title">カテゴリの{{ category.title }}の投稿</h2>
+         <h2 class="movie-Area_Title">{{ category.title }}vlogの投稿</h2>
          <h3 class="movie-Area_Link"><a href="{{ path('category_index', { 'slug': category.slug }) }}">View More<i class="fa fa-caret-right"></i></a></h3>
          </div>
          <!-- Slider main container -->
@@ -51,14 +51,16 @@
             </div>
             {% else %}
             <div>
-                <p style="padding:20px 10px 0; font-size: 14px;">現在カテゴリ{{ category.title }}の投稿はございません</p>
+                <p style="padding:20px 10px 0; font-size: 14px;">現在{{ category.title }}vlogの投稿はございません</p>
             </div>
             {% endfor %}
             </div>
 
             <!-- If we need navigation buttons -->
-            {# <div class="swiper-button-prev"></div>
-            <div class="swiper-button-next"></div> #}
+            <div class="sw-Content_PcOnly">
+               <div class="swiper-button-prev"></div>
+               <div class="swiper-button-next"></div>
+            </div>
          </div>
       </div>
    </div>
