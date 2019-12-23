@@ -7,6 +7,10 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="robots" content="noindex">
 
+    {% block head %}
+        <title></title>
+        <meta name="description" content="">
+    {% endblock %}
 
     {% block stylesheets %}
         {# 'app' must match the first argument to addEntry() in webpack.config.js #}
