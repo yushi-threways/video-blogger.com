@@ -44,7 +44,7 @@
     background-image: linear-gradient(to right, #4c535c 0%, #222 74%);
     color: #fff;
     padding: 10px;
-    width: 380px;
+    width: 420px;
     outline: 1px solid #fff;
     outline-offset: -11px;
     position: relative;
@@ -101,7 +101,7 @@
 .top-MainVisual_VideoImg {
     margin: 0;
     width: 100%;
-    height: 340px;
+    height: 260px;
     display: block;
     @include media-breakpoint-down(sm) {
         height: 170px;

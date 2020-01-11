@@ -26,16 +26,15 @@ class DefaultController extends AbstractController
         $posts = $postRepository->getNewPosts(6);
         $visualPost = $postRepository->getVisualPost(1);
 
-        $categories = $categoryRepository->getCategoriesPosts(20);
-        
-        $category = $categories;
+        $categories = $categoryRepository->getCategoriesPosts();
+        $topCategories = $categoryRepository->findAll();
         
         return $this->render('default/index.html.twig', [
             'total' => $total,
             'posts' => $posts,
             'categories' => $categories,
+            'top_categories' => $topCategories,
             'visual_post' => $visualPost,
-            'cate' => $category
         ]);
     }
 }

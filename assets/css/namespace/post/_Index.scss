@@ -183,7 +183,7 @@
     letter-spacing: 2px;
     margin: 0 auto 5px;
       span {
-        color: #aac0db;
+        color: $color__light_blue;
         @include font-size(18px);
         font-weight: bold;
       }
