@@ -1,0 +1,132 @@
+.top-MainVisual {
+    margin: 0 auto 30px;
+    @include media-breakpoint-down(sm) {
+        margin: 0 auto 20px;
+
+    }
+}
+.top-MainVisual_Catch {
+    p {
+        background-image: linear-gradient(to right, #4c535c 0%, #222 95%);
+        color: #fff;
+        @include font-size(13px);
+        margin: 0 auto;
+        padding: 5px 0;
+        text-align: center;
+        @include media-breakpoint-down(sm) {
+            @include font-size(12px);
+        }
+    }
+}
+.top-MainVisual-Content {
+    width: 100%;
+    background: url(/images/main-visual-min.jpg) no-repeat bottom;
+    background-size: 100% auto;
+    margin: 0 auto;
+    padding: 60px 40px;
+    display: inline-block;
+    @include media-breakpoint-down(sm) {
+        padding: 38px 30px;
+    }
+    @include media-breakpoint-down(xs) {
+        padding: 11px 15px;
+    }
+}
+.top-MainVisual_Video {
+    max-width: 1140px;
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.top-MainVisual_VideoInner {
+    background-image: linear-gradient(to right, #4c535c 0%, #222 74%);
+    color: #fff;
+    padding: 10px;
+    width: 420px;
+    outline: 1px solid #fff;
+    outline-offset: -11px;
+    position: relative;
+    @include media-breakpoint-down(sm) {
+        width: 260px;
+        padding: 10px;
+    }
+    @include media-breakpoint-down(xs) {
+        width: 180px;
+    }
+    .post-Item_Icon {
+        height: 35px;
+        background-color: transparent;
+        border: none;
+        outline: none;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 1.5rem;
+    }
+}
+
+.top-MainVisual_VideoLink {
+    position: relative;
+    display: block;
+    &:before {
+        position: absolute;
+        content: '';
+        display: block;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, .3);
+        z-index: 10;
+    }
+    &:after {
+        width: 95px;
+        height: 25px;
+        position: absolute;
+        margin: auto;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        content: 'Read View';
+        color: #fff;
+        display: block;
+        z-index: 10;
+        padding: 0 0 3px;
+        background-color: transparent;
+        border-bottom: 1px solid #fff;
+    }
+}
+
+.top-MainVisual_VideoImg {
+    margin: 0;
+    width: 100%;
+    height: 260px;
+    display: block;
+    @include media-breakpoint-down(sm) {
+        height: 160px;
+    }
+    @include media-breakpoint-down(xs) {
+        height: 140px;
+    }
+    img {
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.2);
+        -webkit-transition: all 0.2s ease;
+        transition: all 0.2s ease;
+        cursor: pointer;
+        margin: 0 auto;
+        vertical-align: bottom;
+        object-fit: cover;
+    }
+}
+
+.top-MainVisual_VideoTitle {
+
+}
+
+.top-MainVisual_VIdeoCategory {
+
+}
+

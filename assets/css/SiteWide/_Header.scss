@@ -51,11 +51,17 @@
 .sw-Header_MainNavItem {
     a {
         display: block;
-        margin: 0 0 0 15px;
+        margin: 0 0 0 20px;
+        padding: 5px 8px;
         text-align: center;
-        @include font-size(12px);
-        i {
-            @include font-size(16px);
-        }
+        color: #333;
+        @include font-size(13px);
+        border: 1px solid $color__light_blue;
+        border-radius: 5px;
+        background-color: $color__light_blue;
+    }
+    i {
+        color: $color__light_blue;
+        @include font-size(25px);
     }
 }

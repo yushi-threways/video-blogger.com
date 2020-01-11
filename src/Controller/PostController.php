@@ -14,6 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Knp\Component\Pager\PaginatorInterface;
 
 /**
  * @Route("/post")
@@ -23,14 +24,28 @@ class PostController extends AbstractController
     /**
      * @Route("/", name="post_index", methods={"GET"})
      */
-    public function index(PostRepository $postRepository, FavoriteRepository $favoriteRepository): Response
+    public function index(Request $request, PostRepository $postRepository, FavoriteRepository $favoriteRepository, PaginatorInterface $paginator): Response
     {
         $user = $this->getUser();
 
-        $posts = $postRepository->getNewPosts();
+        $query = $postRepository->getNewPosts();
+
+        $pagination = $paginator->paginate(
+            $query, /* query NOT result */
+            $request->query->getInt('page', 1), /*page number*/
+            50 /*limit per page*/
+        );
     
+        $total = $pagination->getTotalItemCount();
+        $pagination_data = $pagination->getPaginationData();
+        $start = $pagination_data['firstItemNumber'];
+        $end = $pagination_data['lastItemNumber'];
+
         return $this->render('post/index.html.twig', [
-            'posts' => $posts,
+            'pagination' => $pagination,
+            'total' => $total,
+            'start' => $start,
+            'end' => $end
         ]);
     }
 
@@ -42,7 +57,7 @@ class PostController extends AbstractController
     {
         $title = $post->getCategory()->getTitle();
         $categoryPosts = $postRepository->getCategoryPosts($title, $post->getId(), 10);
-        $randPosts = $postRepository->getNewPosts(10);
+        $randPosts = $postRepository->getRandPosts(10);
         return $this->render('post/show.html.twig', [
             'post' => $post,
             'categoryPosts' => $categoryPosts,

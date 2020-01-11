@@ -40,8 +40,7 @@ class CategoryRepository extends NestedTreeRepository implements ServiceEntityRe
             ->where("cp.publishedAt <= :today")
             ->setParameter('today', new \Datetime())
 
-            ->setMaxResults($limit)
-        ;
+            ->setMaxResults($limit);
         
         return $qb->getQuery()->getResult();
     }

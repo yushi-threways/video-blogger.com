@@ -25,8 +25,9 @@
    <div class="post-Index">
       <div class="post-Index_Inner">
          <h2 class="post-Index_Title">{{ category.title }}vlog一覧</h2>
+         <div class="post-Index_Counter"><span>{{ total }}</span>件中 {{ start }}~{{ end }}件</div>
             <div class="post-List">
-               {% for post in posts %}
+               {% for post in pagination %}
                <div class="post-Item">
                <a class="post-Item_Link" href="{{ path('post_show', {'category': post.category.slug, 'slug': post.slug}) }}">
                <div class="post-Item_Image">
@@ -69,6 +70,9 @@
                 <p style="padding:20px 10px 0; font-size: 14px;">現在{{category.title}}vlogの投稿はございません</p>
             </div>
             {% endfor %}
+        </div>
+        <div class="sw-Content_Pagination">
+            {{ knp_pagination_render(pagination, null, {}, {align: "center"}) }}
         </div>
       </div>
    </div>

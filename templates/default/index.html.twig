@@ -12,7 +12,21 @@
 {% endblock %}
 
 {% block main %}
-{% include 'parts/top_post.html.twig' %}
+   <div class="top-MainVisual">
+      <div class="top-MainVisual_Catch">
+         <p>{{ total }}件以上のvlog動画、vlogger探すならvideo-blogger.com!!</p>
+      </div>
+      <div class="top-MainVisual-Content">
+         <div class="top-MainVisual_Video">
+            <div class="top-MainVisual_VideoInner">
+               {% include 'parts/visual_post.html.twig' %}
+            </div>
+         </div>
+      </div>
+   </div>
+
+{% include 'parts/category_list.html.twig' %}
+{# {% include 'parts/top_post.html.twig' %} #}
 <div class="sw-Content_Inner sw-Content_PaddingLg">
    <section class="sw-Section">
       {% include 'parts/new_post.html.twig' %}

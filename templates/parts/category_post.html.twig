@@ -11,7 +11,7 @@
             <!-- Additional required wrapper -->
             <div class="swiper-wrapper">
                <!-- Slides -->
-               {% for post in category.posts %}
+               {% for post in category.posts|slice(0,10) %}
                <div class="movie-Item swiper-slide">
                <a class="movie-Item_Link" href="{{ path('post_show', {'category': post.category.slug, 'slug': post.slug}) }}">
                <div class="movie-Item_Image">
