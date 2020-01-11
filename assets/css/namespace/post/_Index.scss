@@ -21,9 +21,10 @@
     @include font-size(18px);
     margin-right: 16px;
     font-weight: normal;
+    letter-spacing: 2px;
     @include media-breakpoint-down(sm) {
         width: 95%;
-        margin: 0 auto 8px;
+        margin: 0 0 8px;
     }
 }
 .post-List {
@@ -176,3 +177,14 @@
         color: #dc143c;
     }
 }
+
+.post-Index_Counter {
+    @include font-size(14px);
+    letter-spacing: 2px;
+    margin: 0 auto 5px;
+      span {
+        color: #aac0db;
+        @include font-size(18px);
+        font-weight: bold;
+      }
+  }

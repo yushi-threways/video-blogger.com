@@ -24,9 +24,11 @@ class MypageController extends AbstractController
 
         /** @var User $user */
         $user = $this->getUser();
+        $favoritedPost = $postRepository->findUserFavoritedPost($user);
 
         return $this->render('my_page/index.html.twig', [
             'user' => $user,
+            'favorited_post' => $favoritedPost
         ]);
     }
 }

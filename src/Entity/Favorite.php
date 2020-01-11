@@ -27,7 +27,7 @@ class Favorite
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Post", inversedBy="favorites")
-     * @ORM\JoinColumn(name="psot_id", referencedColumnName="id",onDelete="CASCADE")
+     * @ORM\JoinColumn(name="post_id", referencedColumnName="id",onDelete="CASCADE")
      */
     private $post;
 

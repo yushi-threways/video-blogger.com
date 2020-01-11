@@ -54,3 +54,23 @@
         display: none;
     }
 }
+
+.sw-Content_Pagination {
+    margin: 30px 0 10px;
+    width: 100%;
+}
+
+
+.vlooger-pagination {
+    @include font-size(12px);
+    .page-link {
+      color: #4c535c;
+    }
+    .page-item.active span {
+      background-color: #4c535c!important;
+      border-color: #4c535c!important;
+    }
+    .justify-content-center {
+        justify-content: center!important;
+    }
+  }

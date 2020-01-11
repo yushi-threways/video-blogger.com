@@ -1,0 +1,29 @@
+<div class="top-CategoryList">
+   <div class="top-CategoryList_Inner">
+      {% for category in categories %}
+         {% if not category.posts is empty %}
+            {# <div class="movie-Area_Header">
+               <h2 class="movie-Area_Title">{{ category.title }}vlogの投稿</h2>
+               <h3 class="movie-Area_Link"><a href="{{ path('category_index', { 'slug': category.slug }) }}">View More<i class="fa fa-caret-right"></i></a></h3>
+            </div> #}
+            {% set post = category.posts.last %}
+            <div class="top-CategoryList_Item">
+               <a class="top-CategoryList_Link" href="{{ path('category_index', {'slug': post.category.slug}) }}">
+                  <h2 class="top-Category_Title">{{ category.title }}vlogの投稿一覧</h2>
+                  <div class="top-CategoryList_Image">
+                  <img src="http://i.ytimg.com/vi/{{ post.video }}/sddefault.jpg" alt="{{ post.title }}">
+                  </div>
+                        {# <div class="top-CategoryList_Title">
+                           <p>{{ post.title }}</p>
+                        </div> #}
+               </a>
+                        {# {% if post.category %}
+                        <div class="movie-Item_Category">
+                           <a href="{{ path('category_index', {'slug': post.category.slug}) }}">{{ post.category }}</a>
+                        </div>
+                        {% endif %} #}
+            </div>
+         {% endif %}
+      {% endfor %}
+   </div>
+</div>

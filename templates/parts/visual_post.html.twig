@@ -1,0 +1,35 @@
+<a class="top-MainVisual_VideoLink" href="{{ path('post_show', {'category': visual_post.category.slug, 'slug': visual_post.slug}) }}">
+               <div class="top-MainVisual_VideoImg">
+               <img src="http://i.ytimg.com/vi/{{ visual_post.video }}/sddefault.jpg" alt="{{ visual_post.title }}">
+               </div>
+               {# <div class="top-MainVisual_VideoTitle">
+                  <p>{{ visual_post.title }}</p>
+               </div> #}
+               </a>
+               {# {% if visual_post.category %}
+               <div class="top-MainVisual_VideoCategory">
+                  <a href="">{{ visual_post.category }}</a>
+               </div>
+               {% endif %} #}
+               {# <div class="post-Item_Tag">
+                  <div class="post-Item_TagIcon">
+                     <i class="fas fa-tags"></i>
+                  </div>
+                  <ul class="post-Item_TagList">
+                     <li class="post-Item_TagItem"><a href="">タグ</a></li>
+                     <li class="post-Item_TagItem"><a href="">タグ</a></li>
+                     <li class="post-Item_TagItem"><a href="">タグ</a></li>
+                  </ul>
+               </div> #}
+               {# {% if is_granted('ROLE_USER') %}
+               {% set isFavorite = is_favorite(visual_post) %}
+               <button type="button" class="post-Item_Favorite {{ isFavorite? 'post-favorited': 'post-favorite' }}"
+                  data-add-url="{{ path("add_post_favorite", {id: visual_post.id}) }}"
+                  data-remove-url="{{ path("remove_post_favorite", {id: visual_post.id})}}"
+               >{{ isFavorite? '<i class="fas fa-star"></i>':'<i class="fas fa-star"></i>' }}</button>
+               {% else %}
+               <button type="button" class="post-Item_Icon" data-toggle="modal" data-target="#exampleModalCenter"
+                  data-add-url="{{ path("add_post_favorite", {id: visual_post.id}) }}"
+                  data-remove-url="{{ path("remove_post_favorite", {id: visual_post.id})}}"
+               ><i class="fas fa-star"></i></button>
+               {% endif %} #}
