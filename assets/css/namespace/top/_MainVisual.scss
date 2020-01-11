@@ -49,7 +49,7 @@
     outline-offset: -11px;
     position: relative;
     @include media-breakpoint-down(sm) {
-        width: 200px;
+        width: 260px;
         padding: 10px;
     }
     @include media-breakpoint-down(xs) {
@@ -104,7 +104,7 @@
     height: 260px;
     display: block;
     @include media-breakpoint-down(sm) {
-        height: 170px;
+        height: 160px;
     }
     @include media-breakpoint-down(xs) {
         height: 140px;
